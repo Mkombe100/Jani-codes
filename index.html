@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Programming with Muksini </title>
+ 
+    <!-- Primary SEO Meta Tags -->
+    <meta name="title" content="Programming with Muksini - Learn Coding Easily">
+    <meta name="description" content="Free tutorials, projects, and guides for beginners and advanced programmers, JavaScript, Web Development, and more!">
+    <meta name="keywords" content="programming-with-muksini, programming with muksini, java full notes, kilima fgk, kilima notes, muksini, Mzumbe icon, mzumbe-programming, Mzumbe-coding, Learn with Muksini, Learn programming with muksini, learn programming with mkombe, mzumbe programmers, coding, Python, JavaScript, web development, Muksini, learn to code">
+    <meta name="author" content="Muksini Mkombe">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://programming-with-muksini.vercel.app/">
+    <meta property="og:title" content="Programming with Muksini - Learn Coding Easily">
+    <meta property="og:description" content="Free tutorials, projects, and guides for beginners and advanced programmers. Learn Python, JavaScript, Web Development, and more!">
+    <meta property="og:image" content="https://programming-with-muksini.vercel.app/images/social-preview.jpg"> <!-- Replace with your actual image URL (1200x630px) -->
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Programming with Muksini - Learn Coding Easily">
+    <meta name="twitter:description" content="Free tutorials, projects, and guides for beginners and advanced programmers. Learn Python, JavaScript, Web Development, and more!">
+    <meta name="twitter:image" content="https://programming-with-muksini.vercel.app/images/social-preview.jpg">
+    <meta name="twitter:site" content="@MuksiniTweets"> <!-- Replace with your Twitter handle -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" style="image.jpg" href="MUK.jpg">
+
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .language-selector {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .language-selector::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .language-selector::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .language-tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 30px;
+            margin-right: 1rem;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .language-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .language-tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .language-content {
+            display: none;
+        }
+
+        .language-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Content Box Styles */
+        .content-box {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .content-box h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .download-section {
+            text-align: center;
+        }
+
+        .download-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Ad Container Styles */
+        .ad-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px dashed #ddd;
+            box-shadow: var(--shadow);
+        }
+
+        .ad-container p {
+            color: #777;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .ad-placeholder {
+            background: #e9ecef;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        /* Floating Help Box */
+        .help-box {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .help-box:hover {
+            transform: scale(1.1);
+        }
+
+        .help-content {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: white;
+            width: 300px;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .help-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .help-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .help-content a {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .help-box.active .help-content {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #ddd;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+                margin-top: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .content-box {
+                padding: 1rem;
+            }
+
+            .help-content {
+                width: 280px;
+                right: -50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="MUK.jpg" alt="Programming with Muksini Logo">
+                <h1>Programming with Muksini</h1>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="tutotials.html"><i class="fas fa-book"></i> Tutorials</a></li>
+                    <li><a href="#"><i class="fas fa-code"></i> Examples</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Master Programming with the Best Resources</h2>
+            <p>Curated collection of top learning materials, websites, and channels for all major programming languages and technologies.</p>
+            <a href="home.html" class="btn">Start Learning Now</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <div class="language-tab active" data-tab="c-cpp">C/C++</div>
+                <div class="language-tab" data-tab="java">Java</div>
+                <div class="language-tab" data-tab="python">Python</div>
+                <div class="language-tab" data-tab="web">Web Development</div>
+                <div class="language-tab" data-tab="ai">AI/ML</div>
+                <div class="language-tab" data-tab="react">React</div>
+                <div class="language-tab" data-tab="mysql">mysql</div>
+                <div class="language-tab" data-tab="Library">Open Library</div>
+
+            </div>
+
+            <!-- C/C++ Content -->
+            <div class="language-content active" id="c-cpp">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning C++ -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning C++</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/cplusplus.com" alt="cplusplus.com logo">
+                            <a href="https://www.cplusplus.com/" target="_blank">cplusplus.com</a> - Comprehensive C++ reference and tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/learncpp.com" alt="Learn C++ logo">
+                            <a href="https://www.learncpp.com/" target="_blank">LearnCpp.com</a> - Excellent beginner-friendly tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/cppreference.com" alt="cppreference logo">
+                            <a href="https://en.cppreference.com/" target="_blank">cppreference.com</a> - Authoritative C++ reference
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/github.com" alt="GitHub logo">
+                            <a href="https://github.com/fffaraz/awesome-cpp" target="_blank">Awesome C++</a> - Curated list of C++ resources
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/hackerrank.com" alt="HackerRank logo">
+                            <a href="https://www.hackerrank.com/domains/tutorials/10-days-of-cpp" target="_blank">HackerRank C++</a> - Practice problems and tutorials
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying C -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for Learning C</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="CodeWithHarry logo">
+                            <a href="https://www.youtube.com/@CodeWithHarry" target="_blank">CodeWithHarry</a> - Hindi/English C tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="mycodeschool logo">
+                            <a href="https://www.youtube.com/@mycodeschool" target="_blank">mycodeschool</a> - Excellent C programming concepts
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="Neso Academy logo">
+                            <a href="https://www.youtube.com/@nesoacademy" target="_blank">Neso Academy</a> - Structured C programming course
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="Programiz logo">
+                            <a href="https://www.youtube.com/@programiz" target="_blank">Programiz</a> - Simple and clear C tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="_blank">freeCodeCamp</a> - Full C Programming Course
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download C Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download C Programming Questions & Exercises</h3>
+                    <p>Practice your C programming skills with our curated collection of questions and exercises with solutions.</p>
+                    <a href="Programming_with_muksin_C_basic_100_questions.pdf" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF (2.4MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- Java Content -->
+            <div class="language-content" id="java">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning Java -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning Java</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/oracle.com" alt="Oracle logo">
+                            <a href="https://docs.oracle.com/javase/tutorial/" target="_blank">Oracle Java Tutorials</a> - Official Java documentation
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/w3schools.com" alt="W3Schools logo">
+                            <a href="https://www.w3schools.com/java/" target="_blank">W3Schools Java</a> - Beginner-friendly Java tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/javatpoint.com" alt="JavaTpoint logo">
+                            <a href="https://www.javatpoint.com/java-tutorial" target="_blank">JavaTpoint</a> - Comprehensive Java guide
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/baeldung.com" alt="Baeldung logo">
+                            <a href="https://www.baeldung.com/" target="_blank">Baeldung</a> - Excellent Java articles and tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/github.com" alt="GitHub logo">
+                            <a href="https://github.com/akullpp/awesome-java" target="_blank">Awesome Java</a> - Curated Java resources
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying Java -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for Learning Java</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Programming with Mosh logo">
+                            <a href="https://www.youtube.com/watch?v=eIrMbAQSU34" target="_blank">Programming with Mosh</a> - Java for beginners
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="Telusko logo">
+                            <a href="https://www.youtube.com/@Telusko" target="_blank">Telusko</a> - Great Java tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/watch?v=xk4_1vDrzzo" target="_blank">freeCodeCamp</a> - Full Java course
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="Alex Lee logo">
+                            <a href="https://www.youtube.com/@alexleeband" target="_blank">Alex Lee</a> - Java for beginners
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Coding with John logo">
+                            <a href="https://www.youtube.com/@CodingWithJohn" target="_blank">Coding with John</a> - Modern Java tutorials
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download Java Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download Java Programming Questions & Exercises</h3>
+                    <p>Practice your Java programming skills with our collection of questions and exercises with solutions.</p>
+                    <a href="JAVA_PRACTICE_QUESTIONS_PROGRAMMING_WITH_MUKSIN.pdf" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF (3.1MB)</a>
+                    <a href="CSS_121_Lecture_Notes_Combined.pdf" class="download-btn"><i class="fas fa-file-pdf"></i> Download Java Full Notes (2.09MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- Python Content -->
+            <div class="language-content" id="python">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning Python -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning Python</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/python.org" alt="Python logo">
+                            <a href="https://docs.python.org/3/tutorial/" target="_blank">Python Official Docs</a> - Official Python tutorial
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/realpython.com" alt="Real Python logo">
+                            <a href="https://realpython.com/" target="_blank">Real Python</a> - High-quality Python tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/w3schools.com" alt="W3Schools logo">
+                            <a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python</a> - Beginner-friendly Python guide
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/pythonspot.com" alt="PythonSpot logo">
+                            <a href="https://pythonspot.com/" target="_blank">PythonSpot</a> - Comprehensive Python tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/github.com" alt="GitHub logo">
+                            <a href="https://github.com/vinta/awesome-python" target="_blank">Awesome Python</a> - Curated Python resources
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying Python -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for Learning Python</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Corey Schafer logo">
+                            <a href="https://www.youtube.com/@coreyms" target="_blank">Corey Schafer</a> - Excellent Python tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="Tech With Tim logo">
+                            <a href="https://www.youtube.com/@TechWithTim" target="_blank">Tech With Tim</a> - Python projects and tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank">freeCodeCamp</a> - Full Python course
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="CS Dojo logo">
+                            <a href="https://www.youtube.com/@CSDojo" target="_blank">CS Dojo</a> - Python for beginners
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Programming with Mosh logo">
+                            <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">Programming with Mosh</a> - Python full course
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download Python Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download Python Programming Questions & Exercises</h3>
+                    <p>Practice your Python programming skills with our collection of questions and exercises with solutions.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF (2.8MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- Web Development Content -->
+            <div class="language-content" id="web">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning Web Development -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning Web Development</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/freecodecamp.org" alt="freeCodeCamp logo">
+                            <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a> - Free coding curriculum
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/developer.mozilla.org" alt="MDN logo">
+                            <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a> - Authoritative web docs
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/w3schools.com" alt="W3Schools logo">
+                            <a href="https://www.w3schools.com/" target="_blank">W3Schools</a> - Web development tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/frontendmasters.com" alt="Frontend Masters logo">
+                            <a href="https://frontendmasters.com/" target="_blank">Frontend Masters</a> - In-depth courses
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/css-tricks.com" alt="CSS-Tricks logo">
+                            <a href="https://css-tricks.com/" target="_blank">CSS-Tricks</a> - Great CSS resources
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying Web Development -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for Web Development</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="Traversy Media logo">
+                            <a href="https://www.youtube.com/@TraversyMedia" target="_blank">Traversy Media</a> - Web dev tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/@freecodecamp" target="_blank">freeCodeCamp</a> - Full courses
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Web Dev Simplified logo">
+                            <a href="https://www.youtube.com/@WebDevSimplified" target="_blank">Web Dev Simplified</a> - Modern web dev
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="Kevin Powell logo">
+                            <a href="https://www.youtube.com/@KevinPowell" target="_blank">Kevin Powell</a> - CSS expert
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Academind logo">
+                            <a href="https://www.youtube.com/@academind" target="_blank">Academind</a> - In-depth tutorials
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download Web Dev Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download Web Development Exercises</h3>
+                    <p>Practice your web development skills with our collection of projects and exercises.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF (4.2MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- AI/ML Content -->
+            <div class="language-content" id="ai">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning AI/ML -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning AI/ML</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/coursera.org" alt="Coursera logo">
+                            <a href="https://www.coursera.org/" target="_blank">Coursera</a> - AI/ML courses from top universities
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/kaggle.com" alt="Kaggle logo">
+                            <a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a> - Practical AI/ML tutorials
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/fast.ai" alt="fast.ai logo">
+                            <a href="https://www.fast.ai/" target="_blank">fast.ai</a> - Practical deep learning
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/developers.google.com" alt="Google AI logo">
+                            <a href="https://ai.google/education/" target="_blank">Google AI Education</a> - Google's AI resources
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/github.com" alt="GitHub logo">
+                            <a href="https://github.com/ujjwalkarn/Machine-Learning-Tutorials" target="_blank">ML Tutorials</a> - Curated ML resources
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying AI/ML -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for AI/ML</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="3Blue1Brown logo">
+                            <a href="https://www.youtube.com/@3blue1brown" target="_blank">3Blue1Brown</a> - Math of ML
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/watch?v=vmEHCJofslg" target="_blank">freeCodeCamp</a> - ML course
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Sentdex logo">
+                            <a href="https://www.youtube.com/@sentdex" target="_blank">Sentdex</a> - Python programming for AI
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="Lex Fridman logo">
+                            <a href="https://www.youtube.com/@lexfridman" target="_blank">Lex Fridman</a> - AI research
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="StatQuest logo">
+                            <a href="https://www.youtube.com/@statquest" target="_blank">StatQuest</a> - Statistics for ML
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download AI/ML Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download AI/ML Exercises & Datasets</h3>
+                    <p>Practice your AI/ML skills with our collection of exercises and curated datasets.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download Resources (5.7MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- React Content -->
+            <div class="language-content" id="react">
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+
+                <!-- Best Websites for Learning React -->
+                <div class="content-box">
+                    <h3><i class="fas fa-globe"></i> Best Websites for Learning React</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://logo.clearbit.com/reactjs.org" alt="React logo">
+                            <a href="https://reactjs.org/docs/getting-started.html" target="_blank">React Official Docs</a> - Official documentation
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/nextjs.org" alt="Next.js logo">
+                            <a href="https://nextjs.org/learn" target="_blank">Next.js Learn</a> - Great React tutorial
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/react-tutorial.app" alt="React Tutorial logo">
+                            <a href="https://react-tutorial.app/" target="_blank">React Tutorial</a> - Interactive tutorial
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/egghead.io" alt="egghead logo">
+                            <a href="https://egghead.io/" target="_blank">egghead</a> - Concise React courses
+                        </li>
+                        <li>
+                            <img src="https://logo.clearbit.com/github.com" alt="GitHub logo">
+                            <a href="https://github.com/enaqx/awesome-react" target="_blank">Awesome React</a> - Curated resources
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Good Channels for Studying React -->
+                <div class="content-box">
+                    <h3><i class="fab fa-youtube"></i> Best YouTube Channels for React</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZ2MCsAD4Xuc6kQz_5tD3Q4Xv1UEW31KZ6QrQ=s176-c-k-c0x00ffffff-no-rj" alt="Web Dev Simplified logo">
+                            <a href="https://www.youtube.com/@WebDevSimplified" target="_blank">Web Dev Simplified</a> - React tutorials
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKaqca-xQ3Zq7MvQCLQqmozdG8pBfxVmjgHkavLM=s176-c-k-c0x00ffffff-no-rj" alt="freeCodeCamp logo">
+                            <a href="https://www.youtube.com/watch?v=bMknfKXIFA8" target="_blank">freeCodeCamp</a> - Full React course
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="PedroTech logo">
+                            <a href="https://www.youtube.com/@PedroTechnologies" target="_blank">PedroTech</a> - React for beginners
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKYcYswt_UhD7D0j6ddiQz6Gb8QmS9L7Q6TQSWA=s176-c-k-c0x00ffffff-no-rj" alt="Codevolution logo">
+                            <a href="https://www.youtube.com/@Codevolution" target="_blank">Codevolution</a> - React tutorial series
+                        </li>
+                        <li>
+                            <img src="https://yt3.googleusercontent.com/ytc/APkrFKZWeMCsx4Q9e_Hm6nhOOUQ3fv96QGUXiMr1-pPP=s176-c-k-c0x00ffffff-no-rj" alt="Jack Herrington logo">
+                            <a href="https://www.youtube.com/@jherr" target="_blank">Jack Herrington</a> - Advanced React
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Download React Questions -->
+                <div class="content-box download-section">
+                    <h3><i class="fas fa-download"></i> Download React Exercises & Projects</h3>
+                    <p>Practice your React skills with our collection of exercises and project ideas.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF (3.5MB)</a>
+                </div>
+
+                <!-- Ad Container -->
+                <div class="ad-container">
+                    <p>Sponsored Content</p>
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <h1> Download song for programming at night</h1>
+    <audio src="Madonna_-_Frozen_Sickick_Remix__CeeNaija.com_.mp3" controls muted></audio>
+        <audio src="Azimov - Deep Breath.mp3" controls muted></audio>
+
+
+    <!-- Floating Help Box -->
+    <div class="help-box" id="helpBox">
+        <i class="fas fa-question"></i>
+        <div class="help-content">
+            <h4>Need Help?</h4>
+            <p>If you have any questions about our resources or need guidance on where to start, feel free to reach out.</p>
+            <p>Email me at: <a href="mailto:muksinimkombe23@gmail.com" target="_blank"> muksinmkombe@gmail.com</a></p>
+            <p>Or join  <a href="#">UNI-CODE 2025</a> for real-time help.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Programming with Muksini</h3>
+                    <p>Your one-stop destination for curated programming resources, tutorials, and learning materials across various technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="tutotials.html">Tutorials</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Practice Problems</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li><a href="#" class="language-link" data-tab="c-cpp">C/C++</a></li>
+                        <li><a href="#" class="language-link" data-tab="java">Java</a></li>
+                        <li><a href="#" class="language-link" data-tab="python">Python</a></li>
+                        <li><a href="#" class="language-link" data-tab="web">Web Development</a></li>
+                        <li><a href="#" class="language-link" data-tab="ai">AI/ML</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact : muksinmkombe@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +255 681 940 454 </li>
+                        <li><i class="fas fa-map-marker-alt"></i> P . O . BOX 1 Mzumbe, Morogoro, Tanzania</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Programming with Muksini. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Language Tabs Functionality
+        const languageTabs = document.querySelectorAll('.language-tab');
+        const languageContents = document.querySelectorAll('.language-content');
+
+        languageTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                languageTabs.forEach(t => t.classList.remove('active'));
+                languageContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Footer language links
+        const languageLinks = document.querySelectorAll('.language-link');
+        languageLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                languageTabs.forEach(t => t.classList.remove('active'));
+                languageContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to selected tab and content
+                document.querySelector(`.language-tab[data-tab="${tabId}"]`).classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Scroll to the language selector
+                document.querySelector('.language-selector').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Floating Help Box Toggle
+        const helpBox = document.getElementById('helpBox');
+        helpBox.addEventListener('click', () => {
+            helpBox.classList.toggle('active');
+        });
+
+        // Close help box when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!helpBox.contains(e.target)) {
+                helpBox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
