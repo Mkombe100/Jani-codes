@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://programming-with-muksini.vercel.app/sitemap.xml
