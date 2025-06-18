@@ -1243,6 +1243,19 @@
                 helpBox.classList.remove('active');
             }
         });
+          // Redirect to quiz page on clicking "Do a Quiz"
+  document.getElementById('quizBtn').addEventListener('click', () => {
+    window.location.href = 'quiz.html';  // Change this to your actual quiz page URL
+  });
+
+  // Close popup on clicking "Thanks"
+  document.getElementById('thanksBtn').addEventListener('click', () => {
+    closePopup();
+  });
+
+  function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+  }
     </script>
 </body>
 </html>
