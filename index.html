@@ -131,43 +131,68 @@
             font-size: 1.5rem;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 5rem 0;
+ /* Main container styling */
+        .muksini-scroller {
+            width: 100%;
+            max-width: auto; /* Small container size */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            touch-action: pan-y;
         }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInDown 1s ease;
+        
+        /* Image gallery styling */
+        .scroller-gallery {
+            display: flex;
+            transition: transform 0.4s ease;
+            height: 200px; /* Compact height for mobile */
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1s ease;
+        
+        .scroller-gallery img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
         }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-            animation: fadeIn 1.5s ease;
+        
+        /* Indicator dots */
+        .scroller-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
         }
-
-        .btn:hover {
-            background: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        
+        .scroller-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s;
         }
+        
+        .scroller-indicator.active {
+            background: #4CAF50; /* Muksini brand green */
+        }
+        
+        /* Navigation arrows (hidden but touchable) */
+        .scroller-nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        
+        .scroller-nav-section {
+            flex: 1;
+            height: 100%;
+            z-index: 1;
+        }
+        
 
         /* Main Content */
         .main-content {
@@ -648,23 +673,25 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Master Programming with the Best Resources</h2>
-            <p>Curated collection of top learning materials, websites, and channels for all major programming languages and technologies.</p>
-            <a href="home.html" class="btn">Start Learning Now</a>
+ <div class="muksini-scroller">
+        <div class="scroller-gallery">
+            <!-- Replace these with your actual images -->
+            <img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Muksini+1" alt="Muksini Programming 1">
+            <img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Muksini+2" alt="Muksini Programming 2">
+            <img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Muksini+3" alt="Muksini Programming 3">
+            <img src="https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Muksini+4" alt="Muksini Programming 4">
         </div>
-    </section>
-    </a>
-       <a href="GuiQuestions.html" class="glowing-label" Style=" margin-bottom: 1rem;">
-        <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java Logo" class="java-logo">
-        <span class="label-text">Discover GUI Questions</span>
-    </a>
-       <a href= "Quiz.html" class="glowing-label">
-        <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java Logo" class="java-logo">
-        <span class="label-text"> Quiz Test your IQ here </span>
-    </a>
+        
+        <!-- Invisible touch areas for navigation -->
+        <div class="scroller-nav">
+            <div class="scroller-nav-section" data-nav="prev"></div>
+            <div class="scroller-nav-section" data-nav="next"></div>
+        </div>
+        
+        <div class="scroller-indicators">
+            <!-- Indicators will be added by JavaScript -->
+        </div>
+    </div>
 <script type="text/javascript">
     aclib.runAutoTag({
         zoneId: 'qjvepli2g',
@@ -1300,6 +1327,131 @@
             if (!helpBox.contains(e.target)) {
                 helpBox.classList.remove('active');
             }
+        });
+          document.addEventListener('DOMContentLoaded', function() {
+            const scroller = document.querySelector('.muksini-scroller');
+            const gallery = scroller.querySelector('.scroller-gallery');
+            const indicatorsContainer = scroller.querySelector('.scroller-indicators');
+            const navSections = scroller.querySelectorAll('.scroller-nav-section');
+            
+            const images = gallery.querySelectorAll('img');
+            const imageCount = images.length;
+            let currentIndex = 0;
+            let autoScrollInterval;
+            let isManualScroll = false;
+            let touchStartX = 0;
+            
+            // Initialize gallery
+            function initGallery() {
+                // Set gallery width
+                gallery.style.width = `${imageCount * 100}%`;
+                
+                // Create indicators
+                indicatorsContainer.innerHTML = '';
+                for (let i = 0; i < imageCount; i++) {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'scroller-indicator';
+                    if (i === currentIndex) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => goToImage(i));
+                    indicatorsContainer.appendChild(indicator);
+                }
+                
+                // Start auto-scroll
+                startAutoScroll();
+            }
+            
+            // Auto-scroll functionality
+            function startAutoScroll() {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = setInterval(() => {
+                    if (!isManualScroll) {
+                        nextImage();
+                    }
+                }, 3000);
+            }
+            
+            // Navigation functions
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % imageCount;
+                updateGallery();
+            }
+            
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+                updateGallery();
+            }
+            
+            function goToImage(index) {
+                currentIndex = index;
+                updateGallery();
+                manualScrollInteraction();
+            }
+            
+            function updateGallery() {
+                gallery.style.transform = `translateX(-${currentIndex * 100 / imageCount}%)`;
+                
+                // Update indicators
+                document.querySelectorAll('.scroller-indicator').forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Handle manual interaction
+            function manualScrollInteraction() {
+                isManualScroll = true;
+                clearInterval(autoScrollInterval);
+                
+                // Resume auto-scroll after 8 seconds
+                setTimeout(() => {
+                    isManualScroll = false;
+                    startAutoScroll();
+                }, 8000);
+            }
+            
+            // Touch events for mobile
+            scroller.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                manualScrollInteraction();
+            }, {passive: true});
+            
+            scroller.addEventListener('touchmove', (e) => {
+                if (!touchStartX) return;
+                const touchEndX = e.touches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                
+                // Prevent vertical scrolling
+                if (Math.abs(diff) > 5) {
+                    e.preventDefault();
+                }
+            }, {passive: false});
+            
+            scroller.addEventListener('touchend', (e) => {
+                if (!touchStartX) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                const threshold = 50;
+                
+                if (diff > threshold) {
+                    nextImage();
+                } else if (diff < -threshold) {
+                    prevImage();
+                }
+                
+                touchStartX = 0;
+            }, {passive: true});
+            
+            // Click events for navigation areas
+            navSections.forEach(section => {
+                section.addEventListener('click', (e) => {
+                    const direction = e.currentTarget.getAttribute('data-nav');
+                    if (direction === 'prev') prevImage();
+                    if (direction === 'next') nextImage();
+                    manualScrollInteraction();
+                });
+            });
+            
+            // Initialize the gallery
+            initGallery();
         });
     </script>
 </body>
