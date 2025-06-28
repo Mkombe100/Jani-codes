@@ -144,6 +144,18 @@
             margin-top: 1rem;
         }
         
+              /* Main container styling */
+        .muksini-scroller {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: hsl(194, 86%, 45%);
+        }
+        
         /* Image gallery styling */
         .scroller-gallery {
             display: flex;
@@ -152,6 +164,8 @@
         }
         
         .scroller-gallery a {
+            min-width: 100%;
+            height: 100%;
             display: block;
             position: relative;
             overflow: hidden;
@@ -172,6 +186,8 @@
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(76, 175, 80, 0.3);
             opacity: 0;
             transition: opacity 0.3s;
@@ -201,8 +217,7 @@
         .scroller-indicator.active {
             background: #4CAF50;
             transform: scale(1.2);
-        }
-        
+        } 
         /* Main Content */
         .main-content {
             padding: 3rem 0;
