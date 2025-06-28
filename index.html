@@ -132,29 +132,57 @@
         }
 
  /* Main container styling */
+         /* Main container styling */
         .muksini-scroller {
             width: 100%;
-            max-width: 400px; /* Small container size */
+            max-width: 400px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            touch-action: pan-y;
+            background-color: hsl(194, 86%, 45%);
         }
         
         /* Image gallery styling */
         .scroller-gallery {
             display: flex;
-            transition: transform 0.4s ease;
-            height: 200px; /* Compact height for mobile */
+            transition: transform 0.5s ease;
+            height: 200px;
         }
         
-        .scroller-gallery a img {
+        .scroller-gallery a {
             min-width: 100%;
             height: 100%;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scroller-gallery img {
             object-fit: cover;
-            pointer-events: none;
+            transition: transform 0.4s ease;
+        }
+        
+        /* Click animation */
+        .scroller-gallery a:active img {
+            transform: scale(0.95);
+        }
+        
+        /* Overlay effect on click */
+        .click-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(76, 175, 80, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .scroller-gallery a:active .click-overlay {
+            opacity: 1;
         }
         
         /* Indicator dots */
@@ -171,29 +199,13 @@
             border-radius: 50%;
             background: #ccc;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .scroller-indicator.active {
-            background: #4CAF50; /* Muksini brand green */
+            background: #4CAF50;
+            transform: scale(1.2);
         }
-        
-        /* Navigation arrows (hidden but touchable) */
-        .scroller-nav {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-        }
-        
-        .scroller-nav-section {
-            flex: 1;
-            height: 100%;
-            z-index: 1;
-        }
-        
-
         /* Main Content */
         .main-content {
             padding: 3rem 0;
@@ -611,24 +623,28 @@
         </div>
     </header>
 
- <div class="muksini-scroller">
+    /* Scroller
+      
+    <div class="muksini-scroller">
         <div class="scroller-gallery">
-            <a href="methodQuiz.html"><img src="GGGGG.png" alt="Muksini Programming 1"></a>
-            <a href=""><img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Muksini+2" alt="Muksini Programming 2"></a>
-            <a href=" "><img src="https://via.placeholder.com/300x200/FF9800/FFFFFF?text=Muksini+3" alt="Muksini Programming 3"></a>
-            <a href=" "><img src="https://via.placeholder.com/300x200/9C27B0/FFFFFF?text=Muksini+4" alt="Muksini Programming 4"></a>
-        </div>
-        
-        <!-- Invisible touch areas for navigation -->
-        <div class="scroller-nav">
-            <div class="scroller-nav-section" data-nav="prev"></div>
-            <div class="scroller-nav-section" data-nav="next"></div>
+            <!-- Replace with your actual links and images -->
+            <a href="https://programming-with-muksini.vercel.app/" >
+                <img src="GGGGG.png" alt="Programming Lesson 1" width="400px" height="260px">
+                <div class="click-overlay"></div>
+            </a>
+            <a href="https://muksini.com/lesson2" >
+                <img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Lesson+2" alt="Programming Lesson 2">
+                <div class="click-overlay"></div>
+            </a>
+
         </div>
         
         <div class="scroller-indicators">
             <!-- Indicators will be added by JavaScript -->
         </div>
     </div>
+    */
+
 <script type="text/javascript">
     aclib.runAutoTag({
         zoneId: 'qjvepli2g',
@@ -1268,15 +1284,15 @@
           document.addEventListener('DOMContentLoaded', function() {
             const scroller = document.querySelector('.muksini-scroller');
             const gallery = scroller.querySelector('.scroller-gallery');
+            const links = gallery.querySelectorAll('a');
             const indicatorsContainer = scroller.querySelector('.scroller-indicators');
-            const navSections = scroller.querySelectorAll('.scroller-nav-section');
             
-            const images = gallery.querySelectorAll('img');
-            const imageCount = images.length;
+            const imageCount = links.length;
             let currentIndex = 0;
             let autoScrollInterval;
             let isManualScroll = false;
             let touchStartX = 0;
+            let isSwiping = false;
             
             // Initialize gallery
             function initGallery() {
@@ -1345,25 +1361,28 @@
                 }, 8000);
             }
             
-            // Touch events for mobile
-            scroller.addEventListener('touchstart', (e) => {
+            // Touch events for mobile - with better swipe detection
+            gallery.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
-                manualScrollInteraction();
+                isSwiping = false;
             }, {passive: true});
             
-            scroller.addEventListener('touchmove', (e) => {
+            gallery.addEventListener('touchmove', (e) => {
                 if (!touchStartX) return;
-                const touchEndX = e.touches[0].clientX;
-                const diff = touchStartX - touchEndX;
+                const touchX = e.touches[0].clientX;
+                const diff = touchStartX - touchX;
                 
-                // Prevent vertical scrolling
-                if (Math.abs(diff) > 5) {
-                    e.preventDefault();
+                if (Math.abs(diff) > 10) {
+                    isSwiping = true;
                 }
-            }, {passive: false});
+            }, {passive: true});
             
-            scroller.addEventListener('touchend', (e) => {
-                if (!touchStartX) return;
+            gallery.addEventListener('touchend', (e) => {
+                if (!touchStartX || !isSwiping) {
+                    touchStartX = 0;
+                    return;
+                }
+                
                 const touchEndX = e.changedTouches[0].clientX;
                 const diff = touchStartX - touchEndX;
                 const threshold = 50;
@@ -1375,21 +1394,48 @@
                 }
                 
                 touchStartX = 0;
+                manualScrollInteraction();
             }, {passive: true});
             
-            // Click events for navigation areas
-            navSections.forEach(section => {
-                section.addEventListener('click', (e) => {
-                    const direction = e.currentTarget.getAttribute('data-nav');
-                    if (direction === 'prev') prevImage();
-                    if (direction === 'next') nextImage();
+            // Mouse events for desktop
+            gallery.addEventListener('mousedown', (e) => {
+                touchStartX = e.clientX;
+                isSwiping = false;
+            });
+            
+            gallery.addEventListener('mousemove', (e) => {
+                if (!touchStartX) return;
+                const mouseX = e.clientX;
+                const diff = touchStartX - mouseX;
+                
+                if (Math.abs(diff) > 10) {
+                    isSwiping = true;
+                }
+            });
+            
+            gallery.addEventListener('mouseup', (e) => {
+                if (!touchStartX) return;
+                
+                if (isSwiping) {
+                    const mouseEndX = e.clientX;
+                    const diff = touchStartX - mouseEndX;
+                    const threshold = 50;
+                    
+                    if (diff > threshold) {
+                        nextImage();
+                    } else if (diff < -threshold) {
+                        prevImage();
+                    }
                     manualScrollInteraction();
-                });
+                }
+                
+                touchStartX = 0;
             });
             
             // Initialize the gallery
             initGallery();
         });
+         
     </script>
 </body>
 </html>
