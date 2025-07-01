@@ -131,83 +131,109 @@
             font-size: 1.5rem;
         }
 
-                /* Main container styling */
-        .muksini-scroller {
-            width: auto;
+   .slideshow-container {
+            max-width: 640px; /* YouTube thumbnail width */
             margin: 0 auto;
             position: relative;
-            overflow: hidden;
-            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            background-color: hsl(194, 86%, 45%);
-        }
-        
-        /* Image gallery styling */
-        .scroller-gallery {
-            display: flex;
-            transition: transform 0.5s ease;
-            height: 200px;
-        }
-        
-        .scroller-gallery a {
-            min-width: 100%;
-            height: 100%;
-            display: block;
-            position: relative;
+            border-radius: 8px;
             overflow: hidden;
         }
         
-        .scroller-gallery img {
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            margin-left: 0.5rem;
-            margin-left: 0.1rem;
-            border-radius: 1rem
-        }
-        
-        /* Click animation */
-        .scroller-gallery a:active img {
-            transform: scale(0.95);
-        }
-        
-        /* Overlay effect on click */
-        .click-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .slides-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
             width: 100%;
             height: 100%;
-            background: rgba(76, 175, 80, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s;
         }
         
-        .scroller-gallery a:active .click-overlay {
-            opacity: 1;
+        .slides-wrapper::-webkit-scrollbar {
+            display: none; /* Hide scrollbar */
         }
         
-        /* Indicator dots */
-        .scroller-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
+        .slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            width: 100%;
+            position: relative;
+            min-height: 0;
+        }
+        
+        .slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        
+        /* Navigation dots */
+        .dots {
+            text-align: center;
             padding: 10px 0;
         }
         
-        .scroller-indicator {
+        .dot {
+            display: inline-block;
             width: 10px;
             height: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
             border-radius: 50%;
-            background: #ccc;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background-color 0.3s;
         }
         
-        .scroller-indicator.active {
-            background: #4CAF50;
-            transform: scale(1.2);
+        .dot.active {
+            background-color: #717171;
         }
-
+        
+        /* Navigation arrows */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            border-radius: 0 3px 3px 0;
+            background-color: rgba(0,0,0,0.3);
+            cursor: pointer;
+            user-select: none;
+            z-index: 1;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .slideshow-container {
+                max-width: 100%;
+            }
+            
+            .prev, .next {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
         /* Main Content */
         .main-content {
             padding: 3rem 0;
@@ -625,24 +651,42 @@
         </div>
     </header>
       
-    <div class="muksini-scroller">
-        <div class="scroller-gallery">
-            <a href="GUI_PRACTICE_QUESTION.pdf" >
-                <img src="GGGGG.png" alt="Programming Lesson 1" width="455px" height="200px">
-                <div class="click-overlay"></div>
-            </a>
-            <a href="https://muksini.com/lesson2" >
-                <img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Lesson+2" alt="Programming Lesson 2">
-                <div class="click-overlay"></div>
-            </a>
-
+   <div class="slideshow-container">
+        <div class="slides-wrapper">
+            <div class="slide">
+                <a href="https://unsplash.com" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80" alt="Chemistry Slide">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://www.pexels.com" target="_blank">
+                    <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Programming Slide">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://unsplash.com/s/photos/mathematics" target="_blank">
+                    <img src="download.jpeg" alt="Mathematics Slide">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://www.pexels.com/search/technology/" target="_blank">
+                    <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Technology Slide">
+                </a>
+            </div>
         </div>
         
-        <div class="scroller-indicators">
-            <!-- Indicators will be added by JavaScript -->
+        <a class="prev" onclick="moveSlide(-1)">❮</a>
+        <a class="next" onclick="moveSlide(1)">❯</a>
+        
+        <div class="dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
         </div>
     </div>
 
+ 
 <script type="text/javascript">
     aclib.runAutoTag({
         zoneId: 'qjvepli2g',
@@ -1279,161 +1323,116 @@
                 helpBox.classList.remove('active');
             }
         });
-          document.addEventListener('DOMContentLoaded', function() {
-            const scroller = document.querySelector('.muksini-scroller');
-            const gallery = scroller.querySelector('.scroller-gallery');
-            const links = gallery.querySelectorAll('a');
-            const indicatorsContainer = scroller.querySelector('.scroller-indicators');
-            
-            const imageCount = links.length;
-            let currentIndex = 0;
-            let autoScrollInterval;
-            let isManualScroll = false;
-            let touchStartX = 0;
-            let isSwiping = false;
-            
-            // Initialize gallery
-            function initGallery() {
-                // Set gallery width
-                gallery.style.width = `${imageCount * 100}%`;
-                
-                // Create indicators
-                indicatorsContainer.innerHTML = '';
-                for (let i = 0; i < imageCount; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.className = 'scroller-indicator';
-                    if (i === currentIndex) indicator.classList.add('active');
-                    indicator.addEventListener('click', () => goToImage(i));
-                    indicatorsContainer.appendChild(indicator);
+        let slideIndex = 0;
+        let slideInterval;
+        let slideTime = 1000; // 6 seconds
+        let isScrolling = false;
+        let isUserScrolling = false;
+        let scrollTimeout;
+        
+        const slidesWrapper = document.querySelector('.slides-wrapper');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        // Initialize
+        updateDots();
+        
+        // Auto-scroll slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(() => {
+                if (!isUserScrolling) {
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    scrollToSlide();
                 }
-                
-                // Start auto-scroll
-                startAutoScroll();
-            }
-            
-            // Auto-scroll functionality
-            function startAutoScroll() {
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = setInterval(() => {
-                    if (!isManualScroll) {
-                        nextImage();
-                    }
-                }, 3000);
-            }
-            
-            // Navigation functions
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % imageCount;
-                updateGallery();
-            }
-            
-            function prevImage() {
-                currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-                updateGallery();
-            }
-            
-            function goToImage(index) {
-                currentIndex = index;
-                updateGallery();
-                manualScrollInteraction();
-            }
-            
-            function updateGallery() {
-                gallery.style.transform = `translateX(-${currentIndex * 100 / imageCount}%)`;
-                
-                // Update indicators
-                document.querySelectorAll('.scroller-indicator').forEach((ind, i) => {
-                    ind.classList.toggle('active', i === currentIndex);
-                });
-            }
-            
-            // Handle manual interaction
-            function manualScrollInteraction() {
-                isManualScroll = true;
-                clearInterval(autoScrollInterval);
-                
-                // Resume auto-scroll after 8 seconds
-                setTimeout(() => {
-                    isManualScroll = false;
-                    startAutoScroll();
-                }, 8000);
-            }
-            
-            // Touch events for mobile - with better swipe detection
-            gallery.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-                isSwiping = false;
-            }, {passive: true});
-            
-            gallery.addEventListener('touchmove', (e) => {
-                if (!touchStartX) return;
-                const touchX = e.touches[0].clientX;
-                const diff = touchStartX - touchX;
-                
-                if (Math.abs(diff) > 10) {
-                    isSwiping = true;
-                }
-            }, {passive: true});
-            
-            gallery.addEventListener('touchend', (e) => {
-                if (!touchStartX || !isSwiping) {
-                    touchStartX = 0;
-                    return;
-                }
-                
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
-                const threshold = 50;
-                
-                if (diff > threshold) {
-                    nextImage();
-                } else if (diff < -threshold) {
-                    prevImage();
-                }
-                
-                touchStartX = 0;
-                manualScrollInteraction();
-            }, {passive: true});
-            
-            // Mouse events for desktop
-            gallery.addEventListener('mousedown', (e) => {
-                touchStartX = e.clientX;
-                isSwiping = false;
+            }, slideTime);
+        }
+        
+        // Scroll to current slide
+        function scrollToSlide() {
+            slidesWrapper.scrollTo({
+                left: slides[slideIndex].offsetLeft,
+                behavior: 'smooth'
             });
-            
-            gallery.addEventListener('mousemove', (e) => {
-                if (!touchStartX) return;
-                const mouseX = e.clientX;
-                const diff = touchStartX - mouseX;
-                
-                if (Math.abs(diff) > 10) {
-                    isSwiping = true;
-                }
+            updateDots();
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            slideIndex = index;
+            scrollToSlide();
+            resetUserScrollTimer();
+        }
+        
+        // Move slide forward/backward
+        function moveSlide(n) {
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            scrollToSlide();
+            resetUserScrollTimer();
+        }
+        
+        // Update dot indicators
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === slideIndex);
             });
+        }
+        
+        // Detect manual scrolling
+        slidesWrapper.addEventListener('scroll', () => {
+            if (!isUserScrolling) {
+                isUserScrolling = true;
+            }
             
-            gallery.addEventListener('mouseup', (e) => {
-                if (!touchStartX) return;
-                
-                if (isSwiping) {
-                    const mouseEndX = e.clientX;
-                    const diff = touchStartX - mouseEndX;
-                    const threshold = 50;
-                    
-                    if (diff > threshold) {
-                        nextImage();
-                    } else if (diff < -threshold) {
-                        prevImage();
-                    }
-                    manualScrollInteraction();
-                }
-                
-                touchStartX = 0;
-            });
+            // Find which slide is currently in view
+            const scrollPosition = slidesWrapper.scrollLeft;
+            const slideWidth = slides[0].offsetWidth;
+            const newIndex = Math.round(scrollPosition / slideWidth);
             
-            // Initialize the gallery
-            initGallery();
+            if (newIndex !== slideIndex) {
+                slideIndex = newIndex;
+                updateDots();
+            }
+            
+            resetUserScrollTimer();
         });
-         
+        
+        // Reset user scroll timer
+        function resetUserScrollTimer() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isUserScrolling = false;
+            }, 2000); // 2 seconds after last interaction
+        }
+        
+        // Adjust timing when page is scrolling
+        window.addEventListener('scroll', function() {
+            isScrolling = true;
+            const newTime = isScrolling ? 8000 : 6000;
+            
+            if (newTime !== slideTime) {
+                slideTime = newTime;
+                clearInterval(slideInterval);
+                startSlideshow();
+            }
+            
+            clearTimeout(window.scrollEndTimer);
+            window.scrollEndTimer = setTimeout(function() {
+                isScrolling = false;
+            }, 200);
+        });
+        
+        // Pause on hover
+        const container = document.querySelector('.slideshow-container');
+        container.addEventListener('mouseenter', function() {
+            clearInterval(slideInterval);
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            startSlideshow();
+        });
+        
+        // Start the slideshow
+        startSlideshow();
     </script>
 </body>
 </html>
