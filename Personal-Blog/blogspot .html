@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+<title>Muksini | Thoughts, Tutorials & Stories by JANI Codes</title>
+
+<meta name="description" content="Muksini is a blog sharing insightful tutorials, life stories, coding tips, and more by JANI Codes. Discover fresh content every week." />
+<meta name="keywords" content="Muksini blog, JANI Codes, coding blog, tutorials, tech tips, personal stories, learn programming, lifestyle blog" />
+<meta name="author" content="JANI Codes" />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Social Preview -->
+<meta property="og:title" content="Muksini Blog by JANI Codes" />
+<meta property="og:description" content="Explore tutorials, tech tips, and inspiring stories on Muksini blog." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://muksini.blogspot.com" />
+<meta property="og:image" content="https://muksini.blogspot.com/favicon.ico" />
+
+<!-- Schema.org JSON-LD for Blog -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Muksini",
+  "url": "https://muksini.blogspot.com",
+  "description": "A blog by JANI Codes featuring coding tutorials, personal thoughts, and tips for learners.",
+  "publisher": {
+    "@type": "Person",
+    "name": "JANI Codes"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://muksini.blogspot.com"
+  }
+}
+</script>
+
+
+    <style>
+        :root {
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --primary: #8b5cf6;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+        }
+        
+        @font-face {
+            font-family: 'SpaceGrotesk';
+            src: url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+        }
+        
+        body {
+            font-family: 'SpaceGrotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        header {
+            padding: 6rem 0 3rem;
+            position: relative;
+            text-align: center;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 30%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cursor-follower {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(139, 92, 246, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: transform 0.1s ease;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 1rem auto 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .post-card {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .post-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .post-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(15, 23, 42, 0.9));
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+        }
+        
+        .post-date {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-title {
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+        }
+        
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .post-excerpt {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin: 0.5rem 0 1rem;
+        }
+        
+        .post-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .tag.hardware {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent);
+        }
+        
+        .tag.software {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--secondary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-shapes" id="floatingShapes"></div>
+        <div class="cursor-follower" id="cursorFollower"></div>
+        
+        <header>
+            <div class="header-bg"></div>
+            <h1 id="mainTitle"> Muksin Blog</h1>
+            <p class="tagline">Interactive explorations at the intersection of code, creativity, and technology</p>
+            
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Creative Coding</a>
+                <a href="#">Dev Tools</a>
+                <a href="#">Hardware</a>
+                <a href="#">Experiments</a>
+                <a href="#">About</a>
+            </div>
+        </header>
+        
+        <main>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="post-content">
+                        <div class="post-date">June 22, 2023</div>
+                        <h3 class="post-title"><a href="#">Generative Art with p5.js</a></h3>
+                        <p class="post-excerpt">Creating dynamic visualizations using JavaScript and the p5.js library. Explore the basics of algorithmic art.</p>
+                        <div class="post-tags">
+                            <span class="tag">Creative Coding</span>
+                            <span class="tag software">JavaScript</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="post-content">
+                        <div class="post-date">May 15, 2023</div>
+                        <h3 class="post-title"><a href="#">Building a Macro Keyboard</a></h3>
+                        <p class="post-excerpt">From concept to finished product – how I built a custom macro keyboard with Arduino and 3D printing.</p>
+                        <div class="post-tags">
+                            <span class="tag hardware">Hardware</span>
+                            <span class="tag">DIY</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="post-content">
+                        <div class="post-date">April 30, 2023</div>
+                        <h3 class="post-title"><a href="#">Neovim as a Python IDE</a></h3>
+                        <p class="post-excerpt">My complete Neovim configuration for Python development with LSP, debugging, and testing support.</p>
+                        <div class="post-tags">
+                            <span class="tag software">Tools</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="post-content">
+                        <div class="post-date">March 18, 2023</div>
+                        <h3 class="post-title"><a href="#">WebAssembly for Web Devs</a></h3>
+                        <p class="post-excerpt">Practical introduction to using WebAssembly in modern web applications for performance-critical tasks.</p>
+                        <div class="post-tags">
+                            <span class="tag software">Web</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 Jani-Codes.com </p>
+        </footer>
+    </div>
+
+    <script>
+        // Cursor follower effect
+        const cursorFollower = document.getElementById('cursorFollower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorFollower.style.left = e.clientX + 'px';
+            cursorFollower.style.top = e.clientY + 'px';
+            
+            // Scale up when hovering interactive elements
+            const target = e.target;
+            if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.classList.contains('post-card')) {
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursorFollower.style.opacity = '0.3';
+            } else {
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorFollower.style.opacity = '0.2';
+            }
+        });
+        
+        // Floating background shapes
+        const floatingShapes = document.getElementById('floatingShapes');
+        const colors = ['#8b5cf6', '#10b981', '#f59e0b'];
+        
+        for (let i = 0; i < 8; i++) {
+            const shape = document.createElement('div');
+            shape.classList.add('shape');
+            
+            // Random properties
+            const size = Math.random() * 300 + 100;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const animationDuration = Math.random() * 40 + 20;
+            
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.background = color;
+            shape.style.left = `${left}%`;
+            shape.style.top = `${top}%`;
+            shape.style.animation = `float ${animationDuration}s infinite alternate ease-in-out`;
+            
+            floatingShapes.appendChild(shape);
+        }
+        
+        // Add keyframes for floating animation
+        const styleSheet = document.createElement('style');
+        styleSheet.innerHTML = `
+            @keyframes float {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                50% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px) rotate(${Math.random() * 20 - 10}deg); }
+                100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 40 - 20}deg); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        
+        // 3D tilt effect on post cards
+        const postCards = document.querySelectorAll('.post-card');
+        
+        postCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `translateY(-5px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-5px) rotateX(0) rotateY(0)';
+            });
+        });
+        
+        // Title animation on load
+        const mainTitle = document.getElementById('mainTitle');
+        
+        setTimeout(() => {
+            mainTitle.style.animation = 'none';
+            mainTitle.offsetHeight; // Trigger reflow
+            mainTitle.style.animation = 'titleFadeIn 1.5s ease-out';
+        }, 100);
+        
+        // Add title animation keyframes
+        const titleAnimation = document.createElement('style');
+        titleAnimation.innerHTML = `
+            @keyframes titleFadeIn {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(titleAnimation);
+    </script>
+</body>
+</html>
