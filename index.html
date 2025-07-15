@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Jani Codes </title>
+
+import Head from 'next/head';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <title>Jani Codes</title>
+        <meta name="description" content="Discover tutorials, hands-on projects, and expert guides with Jani Codes." />
+        <meta property="og:title" content="Jani Codes" />
+        <meta property="og:site_name" content="Jani Codes" />
+        <meta name="theme-color" content="#000000" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5907667115279550"
      crossorigin="anonymous"></script>
  
