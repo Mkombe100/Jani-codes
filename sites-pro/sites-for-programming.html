@@ -1,3 +1,131 @@
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .language-selector {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .language-selector::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .language-selector::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .language-tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 30px;
+            margin-right: 1rem;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .language-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .language-tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .language-content {
+            display: none;
+        }
+
+        .language-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Content Box Styles */
+        .content-box {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .content-box h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .download-section {
+            text-align: center;
+        }
+
+        .download-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+
+
+
+
+
 <div class="container">
             <!-- Language Selector -->
             <div class="language-selector">
