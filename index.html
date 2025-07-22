@@ -668,23 +668,6 @@
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
-        // Language Tabs Functionality
-        const languageTabs = document.querySelectorAll('.language-tab');
-        const languageContents = document.querySelectorAll('.language-content');
-
-        languageTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                languageTabs.forEach(t => t.classList.remove('active'));
-                languageContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
         // Footer language links
         const languageLinks = document.querySelectorAll('.language-link');
         languageLinks.forEach(link => {
