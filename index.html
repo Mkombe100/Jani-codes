@@ -543,6 +543,153 @@
                 right: -50px;
             }
         }
+	    /*
+	     * bottom navigation
+	    */
+	    
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            padding: 10px 5px;
+        }
+
+        .nav-items {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: clamp(10px, 2.5vw, 12px);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+            flex: 1;
+            max-width: 90px;
+            text-align: center;
+        }
+
+        .nav-item i {
+            font-size: clamp(18px, 5vw, 22px);
+            margin-bottom: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active {
+            color: #4361ee;
+        }
+
+        .nav-item.active i {
+            transform: translateY(-3px);
+        }
+
+        .nav-item:hover {
+            color: #4361ee;
+        }
+
+        .login-btn {
+            background-color: #4361ee;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 8px;
+            flex: none;
+        }
+
+        .login-btn:hover {
+            background-color: #3a56d4;
+        }
+
+        .badge {
+            position: absolute;
+            top: -2px;
+            right: 5px;
+            background-color: #f72585;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Active Indicator */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 5px;
+            height: 5px;
+            background-color: #4361ee;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active::after {
+            opacity: 1;
+            bottom: -7px;
+        }
+
+        /* Tablet and Desktop adjustments */
+        @media (min-width: 768px) {
+            .nav-container {
+                padding: 10px 20px;
+            }
+            
+            .nav-items {
+                max-width: 800px;
+            }
+            
+            .nav-item {
+                max-width: 120px;
+                font-size: 14px;
+            }
+            
+            .nav-item i {
+                font-size: 24px;
+            }
+        }
+
+        /* Very small devices adjustment */
+        @media (max-width: 350px) {
+            .nav-item {
+                padding: 6px 8px;
+            }
+            
+            .nav-item span {
+                font-size: 9px;
+            }
+        }
 
     </style>
 </head>
@@ -685,6 +832,44 @@
             </div>
         </div>
     </footer>
+	<div class="content">
+        <h1 style="color: #4361ee; margin-bottom: 20px;">Responsive Navigation Demo</h1>
+        <p>This bottom navigation bar adapts to all screen sizes.</p>
+        <div style="height: 1500px;"></div>
+        <p>Scroll down to see how it stays fixed at the bottom.</p>
+    </div>
+
+    <!-- Responsive Bottom Navigation -->
+    <div class="nav-container">
+        <div class="nav-items">
+            <div class="nav-item login-btn">
+                <i class="fas fa-user"></i>
+                <span>Sign In</span>
+            </div>
+            
+            <div class="nav-item">
+                <i class="fas fa-trophy"></i>
+                <span>Competitions</span>
+                <div class="badge">3</div>
+            </div>
+            
+            <div class="nav-item active">
+                <i class="fas fa-code"></i>
+                <span>Editor</span>
+            </div>
+            
+            <div class="nav-item">
+                <i class="fas fa-tools"></i>
+                <span>Tools</span>
+            </div>
+            
+            <div class="nav-item">
+                <i class="fas fa-book-open"></i>
+                <span>Tutorials</span>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         // Mobile Navigation Toggle
@@ -841,6 +1026,21 @@
         
         // Start the slideshow
         startSlideshow();
+
+	    // navigation-
+	      document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                    if(nav !== this) {
+                        nav.querySelector('i').style.transform = 'none';
+                    }
+                });
+                this.classList.add('active');
+                this.querySelector('i').style.transform = 'translateY(-3px)';
+            });
+        });
+
     </script>
 </body>
 </html>
