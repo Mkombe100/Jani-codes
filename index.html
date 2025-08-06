@@ -634,6 +634,22 @@
             }
         }
 
+	    /*
+	     *  saa
+	     */
+	      #AA1{
+        font-family: san-serif;
+        font-weight: bolder;
+        font-size:larger;
+        align-items: center;
+        text-align: center;
+        background-color:grey;
+        border-radius: 10px;
+        width:6rem;
+        margin-left:2.7rem;
+        color:white;
+      }
+
     </style>
 </head>
 <body>
@@ -653,6 +669,7 @@
 </amp-auto-ads>
         <div class="container header-container">
             <div class="logo">
+		<p id="AA1"></p>   
                 <img src="Web-Tools/Logo.png" alt="Programming with Muksini Logo">
                 <h1> Jani Codes </h1>
             </div>
@@ -934,9 +951,17 @@
             });
         });
 
+	    // time interval
+	    setInterval(()=>{
+         const mk14 = new Date();
+         document.getElementById('AA1').textContent = mk14.toLocaleTimeString('en-GB', {hour12: false});
+       }, 1000);
+
+
     </script>
 </body>
 </html>
+
 
 
 
