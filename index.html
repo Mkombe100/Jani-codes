@@ -866,18 +866,6 @@
             });
         });
 
-        // Floating Help Box Toggle
-        const helpBox = document.getElementById('helpBox');
-        helpBox.addEventListener('click', () => {
-            helpBox.classList.toggle('active');
-        });
-
-        // Close help box when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!helpBox.contains(e.target)) {
-                helpBox.classList.remove('active');
-            }
-        });
         let slideIndex = 0;
         let slideInterval;
         let slideTime = 1000; // 6 seconds
@@ -1006,3 +994,4 @@
     </script>
 </body>
 </html>
+
