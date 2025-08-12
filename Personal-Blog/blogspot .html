@@ -646,33 +646,34 @@
             }
         `;
         document.head.appendChild(titleAnimation);
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const topicButtons = document.querySelectorAll('.topic-btn');
+        const postsContainer = document.querySelector('.posts-container');
+        const posts = postsContainer.querySelectorAll('.post');
 
-          document.addEventListener('DOMContentLoaded', function() {
-            const topicButtons = document.querySelectorAll('.topic-btn');
-            const posts = document.querySelectorAll('.post');
-            
-            topicButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    topicButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const selectedTopic = this.getAttribute('data-topic');
-                    
-                    // Show/hide posts based on selection
-                    posts.forEach(post => {
-                        const postTopics = post.getAttribute('data-topics').split(' ');
-                        
-                        if (selectedTopic === 'all' || postTopics.includes(selectedTopic)) {
-                            post.style.display = 'block';
-                        } else {
-                            post.style.display = 'none';
-                        }
-                    });
+        topicButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedTopic = button.getAttribute('data-topic');
+
+                // Update active button state
+                topicButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter posts
+                posts.forEach(post => {
+                    const postTopics = post.getAttribute('data-topics').split(' ');
+
+                    if (selectedTopic === 'all' || postTopics.includes(selectedTopic)) {
+                        post.classList.remove('hidden');
+                    } else {
+                        post.classList.add('hidden');
+                    }
                 });
             });
         });
+    });
+</script>
     </script>
 </body>
 </html>
