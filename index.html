@@ -46,8 +46,7 @@
 </script>
 
 
-
-          <style>
+         <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -94,7 +93,39 @@
             transition: 0.3s ease;
         }
 
-        /* SIGN-IN ICON */
+        /* PROFILE BUTTON - man in circle */
+        .profile-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.12s ease, background 0.12s ease;
+            padding: 0;
+        }
+
+        .profile-btn i {
+            font-size: 20px;
+            color: #111827;
+            line-height: 1;
+        }
+
+        .profile-btn:focus {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+        }
+
+        .profile-btn:hover {
+            transform: translateY(-2px);
+            background: #e9eaf0;
+        }
+
+        /* SIGN-IN ICON (legacy) */
         .signin-icon {
             font-size: 28px;
             cursor: pointer;
@@ -382,6 +413,11 @@ footer .copyright p {
     .footer-container {
         flex-direction: column;
     }
+
+    /* shrink nav-right width slightly on small screens so profile fits nicely */
+    .nav-left, .nav-right {
+        width: 48px;
+    }
 }
 
 
@@ -402,7 +438,10 @@ footer .copyright p {
         </div>
 
         <div class="nav-right">
-            <a class="sign" href="jjj" ><i class="far fa-user-circle" style="width: 50px; height: 50px;"></i> </a>
+            <!-- Replaced previous link with a round profile button showing a man-in-circle icon -->
+            <button class="profile-btn" id="profileBtn" aria-label="Open profile">
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
+            </button>
         </div>
     </nav>
 
@@ -579,12 +618,17 @@ slideshow.addEventListener("touchend", e => {
     timer = setInterval(nextSlide, duration);
   }
 });
+
+// Profile button behavior: change the href below to point to your profile page or open a dropdown/modal.
+const profileBtn = document.getElementById('profileBtn');
+if (profileBtn) {
+  profileBtn.addEventListener('click', () => {
+    // Example: navigate to a profile page (adjust URL as needed)
+    window.location.href = 'jjj';
+    // Or replace the line above with code to open a profile menu/modal.
+  });
+}
     </script>
 
 </body>
 </html>
-
-
-
-
-
