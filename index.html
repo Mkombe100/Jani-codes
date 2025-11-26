@@ -47,7 +47,7 @@
 
 
 
-      <style>
+          <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -61,7 +61,9 @@
             padding: 12px 16px;
             background: #fff;
             border-bottom: 1px solid #ddd;
-            position: relative;
+            /* make navbar stick to top when scrolling */
+            position: sticky;
+            top: 0;
             z-index: 1001;
         }
 
@@ -581,26 +583,3 @@ slideshow.addEventListener("touchend", e => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
