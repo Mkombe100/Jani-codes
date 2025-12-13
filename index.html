@@ -421,9 +421,58 @@ footer .copyright p {
     }
 }
 
+			 /*for yt video scrolling*/
+			 .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
 
-  
+.video-scroller {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.video-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.video-card {
+    flex: 0 0 calc(33.33% - 20px);
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.video-title {
+    padding: 12px;
+    font-weight: bold;
+    background: #111;
+    color: #fff;
+}
+
+iframe {
+    width: 100%;
+    height: 220px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .video-card {
+        flex: 0 0 100%;
+    }
+    iframe {
+        height: 240px;
+    }
+} 
     </style>
+
+<script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
@@ -494,6 +543,33 @@ footer .copyright p {
   </div>
 
 </div>
+	<!-- video scroller section main -->
+	<h2 class="section-title">Featured Videos</h2>
+
+<div class="video-scroller" id="scroller">
+
+    <div class="video-card">
+        <div class="video-title">Video One</div>
+        <iframe src="https://www.youtube.com/embed/8gKNRr4F6_0?enablejsapi=1"></iframe>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">Video Two</div>
+        <iframe src="https://www.youtube.com/embed/xzB-S-OVZMQ?enablejsapi=1"></iframe>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">Video Three</div>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"></iframe>
+    </div>
+
+    <div class="video-card">
+        <div class="video-title">Video Four</div>
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1"></iframe>
+    </div>
+
+</div>
+
 
 <!--End Her0 Section-->
 <!-- FOOTER -->
@@ -628,10 +704,73 @@ if (profileBtn) {
     // Or replace the line above with code to open a profile menu/modal.
   });
 }
+
+
+		// for video scrolling
+		const scroller = document.getElementById("scroller");
+
+let players = [];
+let autoSlide = true;
+let currentPlaying = null;
+
+/* INIT YOUTUBE API */
+function onYouTubeIframeAPIReady() {
+    document.querySelectorAll("iframe").forEach((iframe, index) => {
+        players[index] = new YT.Player(iframe, {
+            events: {
+                onStateChange: (e) => onVideoState(e, index)
+            }
+        });
+    });
+}
+
+/* VIDEO STATE LOGIC */
+function onVideoState(event, index) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        autoSlide = false; // STOP SLIDING
+        if (currentPlaying !== null && currentPlaying !== index) {
+            players[currentPlaying].pauseVideo();
+        }
+        currentPlaying = index;
+    }
+
+    if (event.data === YT.PlayerState.ENDED) {
+        currentPlaying = null;
+        autoSlide = true; // RESUME AFTER FINISH
+    }
+}
+
+/* AUTO SLIDE */
+function slideNext() {
+    if (!autoSlide) return;
+
+    const card = document.querySelector(".video-card");
+    const move = card.offsetWidth + 20;
+
+    scroller.scrollBy({ left: move, behavior: "smooth" });
+
+    if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 5) {
+        scroller.scrollTo({ left: 0, behavior: "smooth" });
+    }
+}
+
+/* SLIDE EVERY 3 SECONDS */
+setInterval(slideNext, 3000);
+
+/* USER MANUAL SCROLL */
+scroller.addEventListener("scroll", () => {
+    if (currentPlaying !== null) {
+        players[currentPlaying].pauseVideo();
+        currentPlaying = null;
+    }
+    autoSlide = true; // user took control → allow sliding again
+});
+
     </script>
 
 </body>
 </html>
+
 
 
 
