@@ -46,7 +46,8 @@
 </script>
 
 
-         <style>
+
+	  <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -137,6 +138,8 @@
       display: none;
       font-size: 24px;
       cursor: pointer;
+      user-select: none;
+      z-index: 1100;
     }
 
     /* MOBILE MENU */
@@ -172,6 +175,16 @@
       font-size: 18px;
     }
 
+    /* OVERLAY */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1500;
+    }
+    .overlay.active { display: block; }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-links {
@@ -181,6 +194,8 @@
       .hamburger {
         display: block;
       }
+
+      /* removed the fixed small width on nav-left/nav-right to keep hamburger visible and layout intact */
     }
         /*Hero section style*/
    
@@ -311,6 +326,9 @@
     transform-origin: left;
     background: linear-gradient(90deg,#c94141,#e7344f,#ee3434,#c81316,#600304);
     filter: drop-shadow(0 0 6px #880909) brightness(1.3);
+    /* We'll animate using JS by changing transition length and transform */
+    transition: transform 0s linear;
+    display: block;
   }
         /*Hero section style*/
         /* FOOTER */
@@ -419,11 +437,6 @@ footer .copyright p {
     .footer-container {
         flex-direction: column;
     }
-
-    /* shrink nav-right width slightly on small screens so profile fits nicely */
-    .nav-left, .nav-right {
-        width: 48px;
-    }
 }
 
 			 /*for yt video scrolling*/
@@ -489,7 +502,7 @@ iframe {
 	font-size: 2rem;
 	margin-bottom: 2px;
 }			 
-			 
+ 
     </style>
 
 <script src="https://www.youtube.com/iframe_api"></script>
@@ -644,40 +657,47 @@ iframe {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('overlay');
 
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.add('active');
+      overlay.classList.add('active');
     });
 
     closeBtn.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
     });
 
         // Close on clicking outside menu
-        overlay.addEventListener("click", closeMenu);
+        overlay.addEventListener("click", () => {
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+        });
 
         //Herro script
 const slides = document.querySelectorAll('.slide');
 const bars = document.querySelectorAll('.indicator-fill');
 let index = 0;
-const duration = 7000;
-let startTime, reqAnim;
+const duration = 7000; // ms
+let timer = null;
 
+// Use CSS transitions to animate the indicator fill reliably.
+// Reset all bars and then animate the active one for the full duration.
 function startBar(i) {
-  cancelAnimationFrame(reqAnim);
-  bars.forEach(bar => bar.style.transform = "scaleX(0)");
-  startTime = null;
+  bars.forEach((bar, idx) => {
+    bar.style.transition = 'transform 0s linear';
+    bar.style.transform = 'scaleX(0)';
+  });
 
-  function animate(timestamp) {
-    if (!startTime) startTime = timestamp;
-    let progress = (timestamp - startTime) / duration;
-    if (progress > 1) progress = 1;
-    bars[i].style.transform = `scaleX(${progress})`;
-    if (progress < 1) reqAnim = requestAnimationFrame(animate);
-  }
+  // Force reflow so the transition restarts reliably:
+  void bars[i].offsetWidth;
 
-  reqAnim = requestAnimationFrame(animate);
+  // Set transition length equal to slide duration then fill:
+  bars[i].style.transition = `transform ${duration}ms linear`;
+  bars[i].style.transform = 'scaleX(1)';
 }
+
 // slide show
 function showSlide(i) {
   slides.forEach(s => s.classList.remove('active'));
@@ -687,7 +707,19 @@ function showSlide(i) {
 
 showSlide(index);
 
-let timer = setInterval(nextSlide, duration);
+function clearSlideTimer() {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  }
+}
+
+function startSlideTimer() {
+  clearSlideTimer();
+  timer = setInterval(nextSlide, duration);
+}
+
+startSlideTimer();
 
 function nextSlide() {
   index = (index + 1) % slides.length;
@@ -698,8 +730,8 @@ bars.forEach((bar, bIndex) => {
   bar.parentElement.addEventListener('click', () => {
     index = bIndex;
     showSlide(index);
-    clearInterval(timer);
-    timer = setInterval(nextSlide, duration);
+    clearSlideTimer();
+    startSlideTimer();
   });
 });
 
@@ -709,23 +741,22 @@ slideshow.addEventListener("touchstart", e => startX = e.touches[0].clientX);
 slideshow.addEventListener("touchend", e => {
   let diff = startX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 50) {
-    clearInterval(timer);
+    clearSlideTimer();
     if (diff > 0) nextSlide();
     else {
       index = (index - 1 + slides.length) % slides.length;
       showSlide(index);
     }
-    timer = setInterval(nextSlide, duration);
+    startSlideTimer();
   }
 });
 
-// Profile button behavior: change the href below to point to your profile page or open a dropdown/modal.
-const profileBtn = document.getElementById('profileBtn');
+// Profile button behavior
+const profileBtn = document.querySelector('.profile-btn');
 if (profileBtn) {
   profileBtn.addEventListener('click', () => {
     // Example: navigate to a profile page (adjust URL as needed)
     window.location.href = 'jjj';
-    // Or replace the line above with code to open a profile menu/modal.
   });
 }
 
@@ -734,8 +765,12 @@ if (profileBtn) {
 		const scroller = document.getElementById("scroller");
 
 let players = [];
-let autoSlide = true;
+let autoSlide = true;      // used to pause scroller when video playing
 let currentPlaying = null;
+let autoScrollInterval = null;
+const autoScrollDelay = 5000; // interval between auto scrolls
+let scrollerIdleTimeout = null;
+const scrollerIdleResumeMs = 3000; // resume after this much idle time
 
 /* INIT YOUTUBE API */
 function onYouTubeIframeAPIReady() {
@@ -751,69 +786,97 @@ function onYouTubeIframeAPIReady() {
 /* VIDEO STATE LOGIC */
 function onVideoState(event, index) {
     if (event.data === YT.PlayerState.PLAYING) {
-        autoSlide = false; // STOP SLIDING
+        autoSlide = false; // STOP SCROLLING while playing
         if (currentPlaying !== null && currentPlaying !== index) {
+            // pause previously playing video
             players[currentPlaying].pauseVideo();
         }
         currentPlaying = index;
+        stopAutoScroll(); // ensure scroller is paused
     }
 
-    if (event.data === YT.PlayerState.ENDED) {
+    if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
         currentPlaying = null;
-        autoSlide = true; // RESUME AFTER FINISH
+        autoSlide = true; // Allow scrolling again
+        // resume auto scroll after a short delay
+        restartAutoScrollWithDelay(1000);
     }
 }
 
-/* AUTO SLIDE */
+/* AUTO SCROLL - scrolls the scroller by one card */
 function slideNext() {
     if (!autoSlide) return;
 
     const card = document.querySelector(".video-card");
-    const move = card.offsetWidth + 20;
+    if (!card) return;
+    const style = getComputedStyle(card);
+    const gap = 20; // matches CSS gap
+    const move = card.offsetWidth + gap;
 
     scroller.scrollBy({ left: move, behavior: "smooth" });
 
+    // if reached end, go back to start
     if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 5) {
         scroller.scrollTo({ left: 0, behavior: "smooth" });
     }
 }
 
-/* SLIDE EVERY 3 SECONDS */
-setInterval(slideNext, 5000);
+/* Start/stop auto scroll safely */
+function startAutoScroll() {
+    if (autoScrollInterval) return;
+    autoScrollInterval = setInterval(() => {
+        slideNext();
+    }, autoScrollDelay);
+}
 
-/* USER MANUAL SCROLL */
+function stopAutoScroll() {
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+    }
+}
+
+/* Restart auto-scroll after a short delay (useful after user interaction) */
+function restartAutoScrollWithDelay(ms) {
+    if (scrollerIdleTimeout) clearTimeout(scrollerIdleTimeout);
+    scrollerIdleTimeout = setTimeout(() => {
+        if (autoSlide) startAutoScroll();
+    }, ms);
+}
+
+/* Initialize auto-scroll */
+startAutoScroll();
+
+/* USER MANUAL SCROLL & HOVER PAUSE */
 scroller.addEventListener("scroll", () => {
-    if (currentPlaying !== null) {
+    // user scrolled manually -> pause auto-scroll briefly
+    stopAutoScroll();
+    restartAutoScrollWithDelay(scrollerIdleResumeMs);
+
+    // if a video was playing, pause it
+    if (currentPlaying !== null && players[currentPlaying]) {
         players[currentPlaying].pauseVideo();
         currentPlaying = null;
     }
-    autoSlide = true; // user took control → allow sliding again
+    autoSlide = true; // allow slideNext to work when interval resumes
+});
+
+scroller.addEventListener("mouseenter", () => {
+    stopAutoScroll();
+});
+scroller.addEventListener("mouseleave", () => {
+    restartAutoScrollWithDelay(scrollerIdleResumeMs);
+});
+
+// On touch interactions also pause auto scroll and resume after idle
+scroller.addEventListener("touchstart", () => {
+    stopAutoScroll();
+});
+scroller.addEventListener("touchend", () => {
+    restartAutoScrollWithDelay(scrollerIdleResumeMs);
 });
 
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
