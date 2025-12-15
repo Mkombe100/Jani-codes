@@ -503,6 +503,98 @@ iframe {
 	font-size: 2rem;
 	margin-bottom: 2px;
 }			 
+
+		  /*Card sliders*/
+		  /* SECTION */
+.recommended{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:16px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.header h2{
+  font-size:clamp(18px, 3vw, 22px);
+}
+
+.nav button{
+  background:#76b900;
+  border:none;
+  padding:6px 10px;
+  margin-left:6px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+/* SLIDER */
+.slider{
+  width:100%;
+  overflow:hidden;
+}
+
+/* SCROLL AREA */
+.cards{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+
+.cards::-webkit-scrollbar{
+  display:none;
+}
+
+/* CARD LINK */
+.card{
+  flex:0 0 auto;
+  width:clamp(240px, 45vw, 280px); /* ✅ adapts to screen */
+  background:#111;
+  border-radius:8px;
+  overflow:hidden;
+  text-decoration:none;
+  color:#fff;
+}
+
+/* IMAGE */
+.card img{
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;   /* ✅ consistent image size */
+  object-fit:cover;
+  display:block;
+}
+
+/* CONTENT */
+.card-content{
+  padding:12px;
+}
+
+.card span{
+  font-size:12px;
+  color:#aaa;
+}
+
+.card h3{
+  margin-top:6px;
+  font-size:14px;
+  line-height:1.4;
+}
+
+/*  MOBILE: EXACTLY 2 CARDS */
+@media(max-width:768px){
+  .card{
+    width:calc(50% - 7px); /* 2 cards perfectly fit */
+  }
+}
  
     </style>
 
@@ -594,6 +686,74 @@ iframe {
   </div>
 
 </div>
+
+      <!- The cards Recommended  start  -->
+
+<section class="recommended">
+  <div class="header">
+    <h2>Recommended</h2>
+    <div class="nav">
+      <button onclick="scrollLeftBtn()">◀</button>
+      <button onclick="scrollRightBtn()">▶</button>
+    </div>
+  </div>
+
+  <div class="slider">
+    <div class="cards" id="cards">
+
+      <a href="#" class="card">
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'>
+          <rect width='160' height='90' fill='%2376b900'/>
+        </svg>">
+        <div class="card-content">
+          <span>Games | Hardware</span>
+          <h3>Future Ready. Present Deals.</h3>
+        </div>
+      </a>
+
+      <a href="#" class="card">
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'>
+          <rect width='160' height='90' fill='%23222222'/>
+        </svg>">
+        <div class="card-content">
+          <span>AI | Blog</span>
+          <h3>Mistral and NVIDIA Advance Field</h3>
+        </div>
+      </a>
+
+      <a href="#" class="card">
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'>
+          <rect width='160' height='90' fill='%23333333'/>
+        </svg>">
+        <div class="card-content">
+          <span>AI | Video</span>
+          <h3>Building Blocks of AI</h3>
+        </div>
+      </a>
+
+      <a href="#" class="card">
+        <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'>
+          <rect width='160' height='90' fill='%23444444'/>
+        </svg>">
+        <div class="card-content">
+          <span>AI | Research</span>
+          <h3>Next-Gen Neural Networks</h3>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+	<!- Lasting The cards Recommended -->
+
+
+	
 	<!-- video scroller section main -->
     <h1 class="section-title"> Discover more Programming videos</h1>
 <div class="video-scroller" id="scroller">
@@ -877,10 +1037,23 @@ scroller.addEventListener("touchend", () => {
     restartAutoScrollWithDelay(scrollerIdleResumeMs);
 });
 
+		// the cards
+		const cards = document.getElementById("cards");
+
+function scrollLeftBtn(){
+  cards.scrollLeft -= cards.clientWidth * 0.8;
+}
+
+function scrollRightBtn(){
+  cards.scrollLeft += cards.clientWidth * 0.8;
+}
+
+
     </script>
 
 </body>
 </html>
+
 
 
 
