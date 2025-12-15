@@ -54,129 +54,134 @@
         }
 
         /* NAVBAR */
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: #fff;
-            border-bottom: 1px solid #ddd;
-            /* make navbar stick to top when scrolling */
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-        }
+        
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: #0f172a;
+      color: #fff;
+    }
 
-        .nav-left,
-        .nav-right {
-            width: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-        .nav-center {
-            flex-grow: 1;
-            text-align: center;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    .nav-links {
+      display: flex;
+      gap: 40px; /* increased spacing */
+    }
 
-        /* HAMBURGER BUTTON */
-        .hamburger {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
+    .nav-item {
+      position: relative;
+    }
 
-        /* PROFILE BUTTON - man in circle */
-        .profile-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: #f3f4f6;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.12s ease, background 0.12s ease;
-            padding: 0;
-        }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
 
-        .profile-btn i {
-            font-size: 20px;
-            color: #111827;
-            line-height: 1;
-        }
+    /* DROPDOWN */
+    .dropdown {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      background: #020617;
+      min-width: 160px;
+      border-radius: 6px;
+      display: none;
+      flex-direction: column;
+      padding: 10px 0;
+    }
 
-        .profile-btn:focus {
-            outline: 2px solid #2563eb;
-            outline-offset: 2px;
-        }
+    .dropdown a {
+      padding: 10px 16px;
+      font-size: 14px;
+    }
 
-        .profile-btn:hover {
-            transform: translateY(-2px);
-            background: #e9eaf0;
-        }
+    .dropdown a:hover {
+      background: #1e293b;
+    }
 
-        /* SIGN-IN ICON (legacy) */
-        .signin-icon {
-            font-size: 28px;
-            cursor: pointer;
-            color: #000;
-        }
+    .nav-item:hover .dropdown {
+      display: flex;
+    }
 
-        /* SIDE MENU */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background: #333;
-            padding-top: 60px;
-            transition: 0.3s ease;
-            z-index: 1000;
-        }
+    .profile-btn {
+      background: #2563eb;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 20px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-        .side-menu a {
-            display: block;
-            padding: 12px 20px;
-            color: white;
-            text-decoration: none;
-        }
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-        .side-menu a:hover {
-            background: #444;
-        }
+    /* MOBILE MENU */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      height: 100vh;
+      background: #020617;
+      padding: 20px;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 2000;
+    }
 
-        .side-menu.open {
-            left: 0;
-        }
+    .mobile-menu.active {
+      right: 0;
+    }
 
-        /* OVERLAY */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.3);
-            display: none;
-            z-index: 900;
-        }
+    .close-btn {
+      align-self: flex-end;
+      font-size: 26px;
+      cursor: pointer;
+      color: #fff;
+    }
 
-        .overlay.show {
-            display: block;
-        }
+    .mobile-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
 
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
         /*Hero section style*/
    
   /* SLIDESHOW */
@@ -491,32 +496,49 @@ iframe {
 </head>
 
 <body>
+	<!--Start of navigation bar-->
+<nav class="navbar">
+    <div class="nav-left">
+      <div class="logo">MyLogo</div>
+      <div class="nav-links">
+        <div class="nav-item"><a href="#">Home</a></div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <button class="hamburger" id="hamburgerBtn">☰</button>
+        <div class="nav-item">
+          <a>Services ▾</a>
+          <div class="dropdown">
+            <a href="#">Web Design</a>
+            <a href="#">Development</a>
+            <a href="#">SEO</a>
+          </div>
         </div>
 
-        <div class="nav-center">
-			<div class="img-logo"><h1>Jani Codes</h1></div>
+        <div class="nav-item">
+          <a>Products ▾</a>
+          <div class="dropdown">
+            <a href="#">Software</a>
+            <a href="#">Apps</a>
+          </div>
         </div>
 
-        <div class="nav-right">
-            <!-- Replaced previous link with a round profile button showing a man-in-circle icon -->
-            <a href="https://jani-codes-profile.onrender.com"><button class="profile-btn" id="profileBtn" aria-label="Open profile">
-                <i class="fas fa-user-circle" aria-hidden="true"></i>
-            </button></a>
-        </div>
-    </nav>
-
-    <!-- Side menu -->
-    <div class="side-menu" id="sideMenu">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <div class="nav-item"><a href="#">Contact</a></div>
+      </div>
     </div>
 
+    <div class="nav-right">
+      <button class="profile-btn">Profile</button>
+      <div class="hamburger" id="hamburger">☰</div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="closeBtn">✕</div>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Products</a>
+    <a href="#">Contact</a>
+  </div>
+<!--End of navigation bar -->
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
 
@@ -619,29 +641,17 @@ iframe {
 <!-- End FOOTER -->
 
     <script>
-        const hamburger = document.getElementById("hamburgerBtn");
-        const sideMenu = document.getElementById("sideMenu");
-        const overlay = document.getElementById("overlay");
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeBtn');
 
-        function openMenu() {
-            sideMenu.classList.add("open");
-            overlay.classList.add("show");
-            hamburger.textContent = "✖"; // X icon
-        }
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
 
-        function closeMenu() {
-            sideMenu.classList.remove("open");
-            overlay.classList.remove("show");
-            hamburger.textContent = "☰"; // hamburger icon
-        }
-
-        hamburger.addEventListener("click", () => {
-            if (sideMenu.classList.contains("open")) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        });
+    closeBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
 
         // Close on clicking outside menu
         overlay.addEventListener("click", closeMenu);
@@ -668,7 +678,7 @@ function startBar(i) {
 
   reqAnim = requestAnimationFrame(animate);
 }
-
+// slide show
 function showSlide(i) {
   slides.forEach(s => s.classList.remove('active'));
   slides[i].classList.add('active');
@@ -784,6 +794,7 @@ scroller.addEventListener("scroll", () => {
 
 </body>
 </html>
+
 
 
 
