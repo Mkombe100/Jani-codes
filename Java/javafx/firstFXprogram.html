@@ -2,145 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Java fx first Program</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java FX - First Program (colored)</title>
 
 <style>
+:root{
+    --bg: #000;
+    --panel: #0f1720;
+    --panel-accent: #0b1220;
+    --text: #e6eef8;
+    --muted: #9aa4b2;
+
+    /* requested colors */
+    --keyword: #FFD54F;    /* yellow for keywords */
+    --classname: #4DA7FF;  /* blue for classes */
+    --variable: #8BC34A;   /* green for variables */
+    --object: #81D4FA;     /* light blue for object names */
+    --punct: #FFD54F;      /* yellow for semicolons/colons/termination */
+    --comment: #6b7280;
+}
+
 /* ===== Base ===== */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
 body {
     margin: 0;
     padding: 20px;
-    background: #000;
-    color: #fff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-h1 {
-    font-size: 26px;
-    margin-bottom: 5px;
-}
+/* container */
+.container { max-width: 980px; margin: 0 auto; padding: 0 12px; }
 
-.subtitle {
-    color: #bdbdbd;
-    margin-bottom: 20px;
-}
-
-/* ===== Code Block ===== */
+/* code block */
 .code-wrapper {
-    background: #2b2b2b;
+    background: var(--panel);
     border-radius: 12px;
     margin-bottom: 25px;
     overflow: hidden;
 }
-
 .code-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #2f2f2f;
+    background: var(--panel-accent);
     padding: 10px 14px;
     font-size: 14px;
 }
-
-.language {
-    font-weight: 600;
-    color: #e0e0e0;
-}
-
+.language { font-weight: 700; color: var(--text); }
 .copy-btn {
-    background: none;
-    border: none;
-    color: #ccc;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+    color: #ddd;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 8px;
 }
 
-.copy-btn.copied {
-    color: #4caf50;
-}
-
-/* ===== Code ===== */
+/* code area */
 pre {
     margin: 0;
     padding: 16px;
     overflow-x: auto;
-    font-family: Consolas, Monaco, monospace;
+    font-family: "Consolas","Menlo","Monaco","Courier New",monospace;
     font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--text);
+    background: transparent;
 }
 
-/* ===== Simple Syntax Highlight ===== */
-.tag { color: #4fc3f7; }
-.attr { color: #f06292; }
-.value { color: #81c784; }
-.comment { color: #9e9e9e; }
+/* syntax colors requested */
+.keyword { color: var(--keyword); font-weight: 600; }
+.classname { color: var(--classname); font-weight: 600; }
+.variable { color: var(--variable); }
+.object { color: var(--object); }
+.punct { color: var(--punct); font-weight: 700; }
+.comment { color: var(--comment); font-style: italic; }
 
-/* ===== Mobile ===== */
-@media (max-width: 600px) {
-    body {
-        padding: 15px;
-    }
-    pre {
-        font-size: 13px;
-    }
+/* responsive tweaks */
+@media (max-width: 680px) {
+    body { padding: 14px; }
+    pre { padding: 12px; font-size: 13px; }
+    .copy-btn { padding: 6px 8px; font-size: 12px; border-radius: 6px; }
 }
 </style>
 </head>
 
 <body>
+<div class="container">
+    <h1 style="font-size:20px;margin:0 0 8px 0;">JavaFX simple program</h1>
+    <div style="color:var(--muted);margin-bottom:14px;">Colored: class=blue · variables=green · object names=light blue · keywords & terminators=yellow</div>
 
-<!-- ===== BLOCK 1 ===== -->
-<div class="code-wrapper">
-    <div class="code-header">
-        <div class="language">JAVA FX PROGRAMM</div>
-        <button class="copy-btn" onclick="copyCode(this)">📋 Copy code</button>
-    </div>
+    <div class="code-wrapper" role="region" aria-label="Code sample">
+        <div class="code-header">
+            <div class="language">JAVA FX PROGRAM</div>
+            <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">📋 Copy</button>
+        </div>
 
 <pre><code>
 <span class="comment">&lt;!-- Java fx simple program  --&gt;</span>
 <span>
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+<span class="keyword">import</span> javafx.application.<span class="classname">Application</span><span class="punct">;</span>
+<span class="keyword">import</span> javafx.stage.<span class="classname">Stage</span><span class="punct">;</span>
+<span class="keyword">import</span> javafx.scene.<span class="classname">Scene</span><span class="punct">;</span>
 
-import javafx.scene.layout.FlowPane;
+<span class="keyword">import</span> javafx.scene.layout.<span class="classname">FlowPane</span><span class="punct">;</span>
 
-public class FirstSimpleFX extends Application{
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="classname">FirstSimpleFX</span> <span class="keyword">extends</span> <span class="classname">Application</span> <span class="punct">{</span>
     
-    public void start(Stage myStage){
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="keyword">start</span><span class="punct">(</span><span class="classname">Stage</span> <span class="variable">myStage</span><span class="punct">)</span><span class="punct">{</span>
 
-        FlowPane fpane = new FlowPane();
+        <span class="classname">FlowPane</span> <span class="variable">fpane</span> <span class="punct">=</span> <span class="keyword">new</span> <span class="classname">FlowPane</span><span class="punct">()</span><span class="punct">;</span>
 
-        Scene myScene = new Scene(fpane, 500, 400);
+        <span class="classname">Scene</span> <span class="variable">myScene</span> <span class="punct">=</span> <span class="keyword">new</span> <span class="classname">Scene</span><span class="punct">(</span><span class="variable">fpane</span><span class="punct">,</span> <span class="punct">500</span><span class="punct">,</span> <span class="punct">400</span><span class="punct">)</span><span class="punct">;</span>
          
-        myStage.setScene(myScene);
-        myStage.setTitle("EMANNBZGSDEWJFIYWEEFYG");
-        myStage.show();
+        <span class="variable">myStage</span><span class="punct">.</span><span class="keyword">setScene</span><span class="punct">(</span><span class="variable">myScene</span><span class="punct">)</span><span class="punct">;</span>
+        <span class="variable">myStage</span><span class="punct">.</span><span class="keyword">setTitle</span><span class="punct">(</span><span class="punct">"EMANNBZGSDEWJFIYWEEFYG"</span><span class="punct">)</span><span class="punct">;</span>
+        <span class="variable">myStage</span><span class="punct">.</span><span class="keyword">show</span><span class="punct">()</span><span class="punct">;</span>
 
-    }
+    <span class="punct">}</span>
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="keyword">main</span><span class="punct">(</span><span class="keyword">String</span><span class="punct">[</span><span class="punct">]</span> <span class="variable">args</span><span class="punct">)</span> <span class="punct">{</span>
+        <span class="keyword">launch</span><span class="punct">(</span><span class="variable">args</span><span class="punct">)</span><span class="punct">;</span>
+    <span class="punct">}</span>
 
-}
+<span class="punct">}</span>
   
 </span>
 </code></pre>
+    </div>
 </div>
 
-
 <script>
-function copyCode(btn) {
-    const code = btn.closest(".code-wrapper").querySelector("pre").innerText;
-    navigator.clipboard.writeText(code);
-
-    btn.textContent = "✓ Copied";
-    btn.classList.add("copied");
-
-    setTimeout(() => {
-        btn.textContent = "📋 Copy code";
-        btn.classList.remove("copied");
-    }, 1500);
+async function copyCode(btn) {
+    const codeEl = btn.closest(".code-wrapper").querySelector("pre");
+    const code = codeEl ? codeEl.innerText : "";
+    try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(code);
+        } else {
+            const ta = document.createElement('textarea');
+            ta.value = code;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+        btn.textContent = "✓ Copied";
+        setTimeout(() => btn.textContent = "📋 Copy", 1200);
+    } catch (e) {
+        console.error(e);
+        btn.textContent = "Copy failed";
+        setTimeout(() => btn.textContent = "📋 Copy", 1200);
+    }
 }
 </script>
 
