@@ -58,856 +58,403 @@
 }
 </script>
 
-
-
-
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5907667115279550"
      crossorigin="anonymous"></script>
 
 
-
-	  <style>
-        body {
+    <style>
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-			background-color: #e8f9fd;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* NAVBAR */
-        
-    /* NAVBAR */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 24px;
-      background: #0f172a;
-      color: #fff;
-    }
-
-    .nav-left,
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-	  margin-right: 5rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px; /* increased spacing */
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    /* DROPDOWN */
-    .dropdown {
-      position: absolute;
-      top: 32px;
-      left: 0;
-      background: #020617;
-      min-width: 160px;
-      border-radius: 6px;
-      display: none;
-      flex-direction: column;
-      padding: 10px 0;
-    }
-
-    .dropdown a {
-      padding: 10px 16px;
-      font-size: 14px;
-    }
-
-    .dropdown a:hover {
-      background: #1e293b;
-    }
-
-    .nav-item:hover .dropdown {
-      display: flex;
-    }
-
-    .profile-btn {
-      background: #2563eb;
-      border: none;
-      padding: 7px 16px;
-      border-radius: 20px;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    /* HAMBURGER */
-    .hamburger {
-      display: none;
-      font-size: 24px;
-      cursor: pointer;
-      user-select: none;
-      z-index: 1100;
-    }
-
-    /* MOBILE MENU */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 75%;
-      height: 100vh;
-      background: #020617;
-      padding: 20px;
-      transition: right 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 2000;
-    }
-
-    .mobile-menu.active {
-      right: 0;
-    }
-
-    .close-btn {
-      align-self: flex-end;
-      font-size: 26px;
-      cursor: pointer;
-      color: #fff;
-    }
-
-    .mobile-menu a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    /* OVERLAY */
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 1500;
-    }
-    .overlay.active { display: block; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      /* removed the fixed small width on nav-left/nav-right to keep hamburger visible and layout intact */
-    }
-        /*Hero section style*/
-   
-  /* SLIDESHOW */
-  .slideshow {
-    position: relative;
-    width: 100%;
-    height: 80vh;
-    max-height: 700px;
-    overflow: hidden;
-  }
-
-  .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .slide.active { opacity: 1; }
-
-  .slide-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    z-index: 2;
-    position: relative;
-  }
-
-  /* IMAGE stays 4:3 always */
-  .slide-image {
-    flex: 2;
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: auto;
-    margin-left: auto;
-    margin-left: auto;
-  }
-
-  .visit123{
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #ff0000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 3;
-  }
-
-  .Title123{
-    font-weight: bold;
-    color: #000;
-    font-size: 3rem;
-    margin-left: 0px;
-    margin-right: 5rem;
-  }
-
-.visit123 a{
-    text-decoration: none;
-    color: #fff;
-  }
-  .Desc123{
-    font-size: large;
-    font-weight: bold;
-    color: #1d1c1c;
-    margin-left: 0px;
-    margin-right: 79px;
-  }
-  @media (max-width: 768px) {
-    .slide { flex-direction: column; }
-
-    .slide-content, .slide-image {
-      width: 100%;
-      height: auto;
-    }
-
-    .slide-image {
-      aspect-ratio: 4 / 3; /* still 4:3 on mobile */
-    }
-
-    .slide-content h1 { font-size: 2rem; }
-  }
-
-  /* INDICATORS (5px from bottom, thin Nvidia-style) */
-  .indicator-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 8px;
-    z-index: 3;
-  }
-
-  .indicator {
-    flex: 1;
-    height: 4px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 50px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid #e5e3ee;
-    box-shadow: 0 0 10px hsla(217, 79%, 72%, 0.847) inset;
-    position: relative;
-    margin: 0 3px;
-  }
-
-  .indicator-fill {
-    width: 100%;
-    height: 100%;
-    transform: scaleX(0);
-    transform-origin: left;
-    background: linear-gradient(90deg,#c94141,#e7344f,#ee3434,#c81316,#600304);
-    filter: drop-shadow(0 0 6px #880909) brightness(1.3);
-    /* We'll animate using JS by changing transition length and transform */
-    transition: transform 0s linear;
-    display: block;
-  }
-        /*Hero section style*/
-        /* FOOTER */
-        footer {
-    background: #0d0d0d;
-    color: #f1f1f1;
-    padding: 60px 0 25px;
-    font-family: "Poppins", sans-serif;
-}
-
-footer .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.footer-col {
-    flex: 1 1 300px;
-}
-
-.footer-col h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #ffffff;
-    position: relative;
-}
-
-.footer-col h3::after {
-    content: "";
-    width: 50px;
-    height: 3px;
-    background: #ff9800;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    border-radius: 2px;
-}
-
-.footer-col p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #cccccc;
-}
-
-.footer-col ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-col ul li {
-    margin: 12px 0;
-    font-size: 15px;
-    color: #cccccc;
-    display: flex;
-    align-items: center;
-}
-
-.footer-col ul li i {
-    margin-right: 10px;
-    color: #ff9800;
-}
-
-/* Social links */
-.social-links a {
-    display: inline-block;
-    width: 38px;
-    height: 38px;
-    background: #222;
-    color: #ffffff;
-    margin: 6px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 38px;
-    font-size: 16px;
-    transition: 0.3s ease;
-}
-
-.social-links a:hover {
-    background: #ff9800;
-    transform: translateY(-5px);
-    color: #000;
-}
-
-/* Copyright */
-footer .copyright {
-    text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 40px;
-    padding-top: 20px;
-}
-
-footer .copyright p {
-    color: #bbbbbb;
-    font-size: 14px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-    }
-}
-
-			 /*for yt video scrolling*/
-			 .section-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 26px;
-}
-
-.video-scroller {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-}
-
-.video-scroller::-webkit-scrollbar {
-    display: none;
-}
-
-.video-card {
-    flex: 0 0 calc(33.33% - 20px);
-    scroll-snap-align: start;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
-
-.video-title {
-    padding: 12px;
-    font-weight: bold;
-    background: #111;
-    color: #fff;
-}
-
-iframe {
-    width: 100%;
-    height: 220px;
-    border: none;
-}
-
-@media (max-width: 768px) {
-    .video-card {
-        flex: 0 0 100%;
-    }
-    iframe {
-        height: 240px;
-    }
-} 
-
-.video-scroller{
-	background: 00DDFF;
-}	
-
-.section-title{
-	font-size: large;
-    font-weight: bolder;
-    font-family: san-serif;
-    color: #111;
-	background-color: #bbb2cf;
-	font-size: 2rem;
-	margin-bottom: 2px;
-}			 
-
-		  /*Card sliders*/
-		  /* SECTION */
-.recommended{
-  width:100%;
-  max-width:1200px;
-  margin:auto;
-  padding:16px;
-}
-
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.header h2{
-  font-size:clamp(18px, 3vw, 22px);
-}
-
-.nav button{
-  background:#76b900;
-  border:none;
-  padding:6px 10px;
-  margin-left:6px;
-  font-size:14px;
-  cursor:pointer;
-}
-
-/* SLIDER */
-.slider1{
-  width:100%;
-  overflow:hidden;
-}
-
-/* SCROLL AREA */
-.cards{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-  scroll-behavior:smooth;
-  -webkit-overflow-scrolling:touch;
-}
-
-.cards::-webkit-scrollbar{
-  display:none;
-}
-
-/* CARD LINK */
-.card{
-  flex:0 0 auto;
-  width:clamp(240px, 45vw, 280px); /* ✅ adapts to screen */
-  background:#111;
-  border-radius:8px;
-  overflow:hidden;
-  text-decoration:none;
-  color:#fff;
-}
-
-/* IMAGE */
-.card img{
-  width:100%;
-  height:auto;
-  aspect-ratio:16/9;   /* ✅ consistent image size */
-  object-fit:cover;
-  display:block;
-}
-
-/* CONTENT */
-.card-content{
-  padding:12px;
-}
-
-.card span{
-  font-size:12px;
-  color:#aaa;
-}
-
-.card h3{
-  margin-top:6px;
-  font-size:14px;
-  line-height:1.4;
-}
-
-/*  MOBILE: EXACTLY 2 CARDS */
-@media(max-width:768px){
-  .card{
-    width:calc(50% - 7px); /* 2 cards perfectly fit */
-  }
-}
- 
+        body {
+            background: #050a05;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courgette', 'Ubuntu Mono', 'Ubuntu', 'Courier New', cursive, monospace;
+            padding: 1.5rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* ===== TERMINAL BOX - NO BORDERS ===== */
+        .terminal-box {
+            background: transparent;
+            padding: 0.5rem 0;
+        }
+
+        /* ===== BOX 1: TITLE ===== */
+        .title-box .typing-title {
+            color: #00ff41;
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: 6px;
+            text-shadow: 0 0 40px rgba(0, 255, 65, 0.25), 0 0 80px rgba(0, 255, 65, 0.08);
+            display: inline;
+            border-right: 6px solid #00ff41;
+            padding-right: 8px;
+            animation: blink-caret 0.8s step-end infinite;
+        }
+
+        .title-prefix {
+            color: #00ff41;
+            font-size: 3rem;
+            font-weight: 500;
+            text-shadow: 0 0 40px rgba(0, 255, 65, 0.25);
+            margin-right: 0.3rem;
+        }
+
+        @keyframes blink-caret {
+            0%, 100% { border-color: #00ff41; }
+            50% { border-color: transparent; }
+        }
+
+        /* ===== DESCRIPTION UNDER TITLE ===== */
+        .desc-wrapper {
+            margin-top: 1.2rem;
+            padding: 0.5rem 0;
+            min-height: 8rem;
+        }
+
+        .desc-text {
+            color: #66ff77;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            display: inline;
+            border-right: 4px solid #00ff41;
+            padding-right: 6px;
+            animation: blink-caret 0.8s step-end infinite;
+        }
+
+        /* ===== BOX 2: LINKS ===== */
+        .prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: #66ff77;
+        }
+
+        .prompt-symbol {
+            color: #00ff41;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .prompt-path {
+            color: #00dd33;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.25rem 0 0.5rem 0;
+        }
+
+        .link-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            padding: 0.5rem 0 0.5rem 0.25rem;
+            border-bottom: 1px solid #0f2a0f;
+            font-size: 1.1rem;
+            flex-wrap: wrap;
+        }
+
+        .link-list li:last-child {
+            border-bottom: none;
+        }
+
+        .link-bullet {
+            color: #00cc33;
+            font-weight: 300;
+            margin-right: 0.2rem;
+            user-select: none;
+        }
+
+        .link-text {
+            color: #66ff77;
+            letter-spacing: 0.2px;
+        }
+
+        .link-list a {
+            color: #4fc3ff;
+            text-decoration: none;
+            border-bottom: 1px dashed #0a3a5a;
+            padding: 0.1rem 0.15rem;
+            transition: color 0.1s, border-color 0.1s, background 0.1s;
+            font-weight: 400;
+            word-break: break-all;
+        }
+
+        .link-list a:hover {
+            color: #80d4ff;
+            border-bottom: 1px solid #4fc3ff;
+            background: #0a2a3a;
+            border-radius: 4px;
+        }
+
+        /* ===== BOX 3: FOOTER ===== */
+        .footer-term {
+            margin-top: 0.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #0f2a0f;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-col {
+            flex: 1 1 200px;
+        }
+
+        .footer-col h3 {
+            color: #00ff41;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            border-bottom: 1px solid #0f2a0f;
+            padding-bottom: 0.4rem;
+        }
+
+        .footer-col p {
+            color: #66ff77;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            color: #66ff77;
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .footer-col ul li i {
+            color: #00ff41;
+            width: 1.2rem;
+        }
+
+        .footer-col .social-links {
+            margin-top: 0.8rem;
+        }
+
+        .footer-col .social-links a {
+            color: #66ff77;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-col .social-links a:hover {
+            color: #00ff41;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: #339944;
+            font-size: 0.85rem;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid #0f2a0f;
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 600px) {
+            .container {
+                padding: 0;
+            }
+            .title-box .typing-title {
+                font-size: 2rem;
+                border-right-width: 5px;
+            }
+            .title-prefix {
+                font-size: 2rem;
+            }
+            .link-list li {
+                font-size: 0.95rem;
+                padding: 0.6rem 0;
+            }
+            .prompt-line {
+                font-size: 0.95rem;
+            }
+            .desc-text {
+                font-size: 1rem;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
     </style>
-
-<script src="https://www.youtube.com/iframe_api"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Font: Courgette -->
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-<a href="https://pastpaperportal-system-1.onrender.com/"><h1>Past Papers</h1></a>
-<a href="https://visioncampus.onrender.com/"><h1>Video Call</h1></a>
-	
-<!--End Her0 Section-->
-<!-- FOOTER -->
- <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3> Jani Codes</h3>
-                    <p>Your one-stop destination for curated programming resources, tutorials, and learning materials across various technologies.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Mkombe100"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
- 
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> contact : muksinmkombe@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +255 681 940 454 </li>
-                        <li><i class="fas fa-map-marker-alt"></i> P . O . BOX 1 Mzumbe, Morogoro, Tanzania</li>
-                    </ul>
+
+<div class="container">
+
+    <!-- ========================================= -->
+    <!-- BOX 1: TITLE + DESCRIPTION               -->
+    <!-- ========================================= -->
+    <div class="terminal-box title-box">
+        <span class="title-prefix">❯_</span><span class="typing-title" id="titleText"></span>
+        
+        <div class="desc-wrapper">
+            <span class="desc-text" id="descText"></span>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- BOX 2: LINKS                             -->
+    <!-- ========================================= -->
+    <div class="terminal-box">
+        <div class="prompt-line">
+            <span class="prompt-symbol">❯</span>
+            <span class="prompt-path">~/jani</span>
+            <span style="color:#00ff41; opacity:0.7;">_</span>
+        </div>
+
+        <ul class="link-list">
+            <li>
+                <span class="link-bullet">▶</span>
+                <span class="link-text">Online classroom</span>
+                <a href="https://visioncampus.onrender.com" target="_blank" rel="noopener noreferrer">vision campus</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- BOX 3: FOOTER                            -->
+    <!-- ========================================= -->
+    <div class="terminal-box footer-term">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3><i class="fas fa-terminal" style="margin-right:0.5rem;"></i>Jani Codes</h3>
+                <p>in social media</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Programming with Muksini. All Rights Reserved.</p>
+
+            <div class="footer-col">
+                <h3><i class="fas fa-envelope" style="margin-right:0.5rem;"></i>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> muksinmkombe@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +255 681 940 454</li>
+                    <li><i class="fas fa-map-marker-alt"></i> P . O . BOX 1 Mzumbe, Morogoro, Tanzania</li>
+                </ul>
             </div>
         </div>
-    </footer>
-<!-- End FOOTER -->
+        <div class="footer-copyright">
+            <i class="fas fa-copyright"></i> 2025 Programming with Muksini. All Rights Reserved.
+        </div>
+    </div>
 
-    <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeBtn = document.getElementById('closeBtn');
-    const overlay = document.getElementById('overlay');
+</div>
 
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.add('active');
-      overlay.classList.add('active');
-    });
+<script>
+    (function() {
+        // ===== TITLE: "JANI CODES" - types once and stays =====
+        const titleElement = document.getElementById('titleText');
+        const titlePhrase = 'JANI CODES';
+        let titleCharIndex = 0;
+        let titleCurrentText = '';
+        let titleStarted = false;
 
-    closeBtn.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      overlay.classList.remove('active');
-    });
-
-        // Close on clicking outside menu
-        overlay.addEventListener("click", () => {
-          mobileMenu.classList.remove('active');
-          overlay.classList.remove('active');
-        });
-
-        //Herro script
-const slides = document.querySelectorAll('.slide');
-const bars = document.querySelectorAll('.indicator-fill');
-let index = 0;
-const duration = 5000; // ms
-let timer = null;
-
-// Use CSS transitions to animate the indicator fill reliably.
-// Reset all bars and then animate the active one for the full duration.
-function startBar(i) {
-  bars.forEach((bar, idx) => {
-    bar.style.transition = 'transform 0s linear';
-    bar.style.transform = 'scaleX(0)';
-  });
-
-  // Force reflow so the transition restarts reliably:
-  void bars[i].offsetWidth;
-
-  // Set transition length equal to slide duration then fill:
-  bars[i].style.transition = `transform ${duration}ms linear`;
-  bars[i].style.transform = 'scaleX(1)';
-}
-
-// slide show
-function showSlide(i) {
-  slides.forEach(s => s.classList.remove('active'));
-  slides[i].classList.add('active');
-  startBar(i);
-}
-
-showSlide(index);
-
-function clearSlideTimer() {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-  }
-}
-
-function startSlideTimer() {
-  clearSlideTimer();
-  timer = setInterval(nextSlide, duration);
-}
-
-startSlideTimer();
-
-function nextSlide() {
-  index = (index + 1) % slides.length;
-  showSlide(index);
-}
-
-bars.forEach((bar, bIndex) => {
-  bar.parentElement.addEventListener('click', () => {
-    index = bIndex;
-    showSlide(index);
-    clearSlideTimer();
-    startSlideTimer();
-  });
-});
-
-const slideshow = document.getElementById("slideshow");
-let startX = 0;
-slideshow.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-slideshow.addEventListener("touchend", e => {
-  let diff = startX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) {
-    clearSlideTimer();
-    if (diff > 0) nextSlide();
-    else {
-      index = (index - 1 + slides.length) % slides.length;
-      showSlide(index);
-    }
-    startSlideTimer();
-  }
-});
-
-// Profile button behavior
-const profileBtn = document.querySelector('.profile-btn');
-if (profileBtn) {
-  profileBtn.addEventListener('click', () => {
-    // Example: navigate to a profile page (adjust URL as needed)
-    window.location.href = 'jjj';
-  });
-}
-
-
-		// for video scrolling
-		const scroller = document.getElementById("scroller");
-
-let players = [];
-let autoSlide = true;      // used to pause scroller when video playing
-let currentPlaying = null;
-let autoScrollInterval = null;
-const autoScrollDelay = 5000; // interval between auto scrolls
-let scrollerIdleTimeout = null;
-const scrollerIdleResumeMs = 3000; // resume after this much idle time
-
-/* INIT YOUTUBE API */
-function onYouTubeIframeAPIReady() {
-    document.querySelectorAll("iframe").forEach((iframe, index) => {
-        players[index] = new YT.Player(iframe, {
-            events: {
-                onStateChange: (e) => onVideoState(e, index)
+        function typeTitle() {
+            if (!titleStarted) {
+                titleStarted = true;
+                function typeTitleChar() {
+                    if (titleCharIndex <= titlePhrase.length) {
+                        titleCurrentText = titlePhrase.substring(0, titleCharIndex);
+                        titleElement.textContent = titleCurrentText;
+                        titleCharIndex++;
+                        setTimeout(typeTitleChar, 80);
+                    } else {
+                        // Title is complete - start description after 0.5s
+                        setTimeout(function() {
+                            typeDescription();
+                        }, 500);
+                    }
+                }
+                typeTitleChar();
             }
-        });
-    });
-}
-
-/* VIDEO STATE LOGIC */
-function onVideoState(event, index) {
-    if (event.data === YT.PlayerState.PLAYING) {
-        autoSlide = false; // STOP SCROLLING while playing
-        if (currentPlaying !== null && currentPlaying !== index) {
-            // pause previously playing video
-            players[currentPlaying].pauseVideo();
         }
-        currentPlaying = index;
-        stopAutoScroll(); // ensure scroller is paused
-    }
 
-    if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
-        currentPlaying = null;
-        autoSlide = true; // Allow scrolling again
-        // resume auto scroll after a short delay
-        restartAutoScrollWithDelay(1000);
-    }
-}
+        // ===== DESCRIPTION: types entire paragraph, pauses, erases, repeats =====
+        const descElement = document.getElementById('descText');
+        const fullParagraph = 'Your coding terminal for learning and building. Master Python, AI, and web development. Interactive tutorials and real-world projects.';
+        
+        let descCharIndex = 0;
+        let descDeleting = false;
+        let descCurrentText = '';
 
-/* AUTO SCROLL - scrolls the scroller by one card */
-function slideNext() {
-    if (!autoSlide) return;
+        function typeDescription() {
+            if (descDeleting) {
+                descCurrentText = fullParagraph.substring(0, descCharIndex - 1);
+                descCharIndex--;
+            } else {
+                descCurrentText = fullParagraph.substring(0, descCharIndex + 1);
+                descCharIndex++;
+            }
 
-    const card = document.querySelector(".video-card");
-    if (!card) return;
-    const style = getComputedStyle(card);
-    const gap = 20; // matches CSS gap
-    const move = card.offsetWidth + gap;
+            descElement.textContent = descCurrentText;
 
-    scroller.scrollBy({ left: move, behavior: "smooth" });
+            let speed = descDeleting ? 25 : 40;
 
-    // if reached end, go back to start
-    if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 5) {
-        scroller.scrollTo({ left: 0, behavior: "smooth" });
-    }
-}
+            if (!descDeleting && descCharIndex === fullParagraph.length) {
+                speed = 3000; // Pause 3 seconds after full paragraph
+                descDeleting = true;
+            } else if (descDeleting && descCharIndex === 0) {
+                descDeleting = false;
+                speed = 400;
+            }
 
-/* Start/stop auto scroll safely */
-function startAutoScroll() {
-    if (autoScrollInterval) return;
-    autoScrollInterval = setInterval(() => {
-        slideNext();
-    }, autoScrollDelay);
-}
+            setTimeout(typeDescription, speed);
+        }
 
-function stopAutoScroll() {
-    if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-        autoScrollInterval = null;
-    }
-}
-
-/* Restart auto-scroll after a short delay (useful after user interaction) */
-function restartAutoScrollWithDelay(ms) {
-    if (scrollerIdleTimeout) clearTimeout(scrollerIdleTimeout);
-    scrollerIdleTimeout = setTimeout(() => {
-        if (autoSlide) startAutoScroll();
-    }, ms);
-}
-
-/* Initialize auto-scroll */
-startAutoScroll();
-
-/* USER MANUAL SCROLL & HOVER PAUSE */
-scroller.addEventListener("scroll", () => {
-    // user scrolled manually -> pause auto-scroll briefly
-    stopAutoScroll();
-    restartAutoScrollWithDelay(scrollerIdleResumeMs);
-
-    // if a video was playing, pause it
-    if (currentPlaying !== null && players[currentPlaying]) {
-        players[currentPlaying].pauseVideo();
-        currentPlaying = null;
-    }
-    autoSlide = true; // allow slideNext to work when interval resumes
-});
-
-scroller.addEventListener("mouseenter", () => {
-    stopAutoScroll();
-});
-scroller.addEventListener("mouseleave", () => {
-    restartAutoScrollWithDelay(scrollerIdleResumeMs);
-});
-
-// On touch interactions also pause auto scroll and resume after idle
-scroller.addEventListener("touchstart", () => {
-    stopAutoScroll();
-});
-scroller.addEventListener("touchend", () => {
-    restartAutoScrollWithDelay(scrollerIdleResumeMs);
-});
-
-		// the cards
-		const cards = document.getElementById("cards");
-
-function scrollLeftBtn(){
-  cards.scrollLeft -= cards.clientWidth * 0.8;
-}
-
-function scrollRightBtn(){
-  cards.scrollLeft += cards.clientWidth * 0.8;
-}
-
-
-    </script>
+        // Start title animation
+        typeTitle();
+    })();
+</script>
 
 </body>
 </html>
 
+	
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+	
