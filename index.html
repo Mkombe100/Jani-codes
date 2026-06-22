@@ -61,7 +61,10 @@
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5907667115279550"
      crossorigin="anonymous"></script>
 
-
+    <!-- Font Awesome (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Font: Courgette (cursive) + system fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -81,25 +84,25 @@
 
         .container {
             width: 100%;
-            max-width: 850px;
+            max-width: 880px;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
         }
 
-        /* ===== TERMINAL BOX - NO BORDERS ===== */
+        /* terminal-box – transparent, no borders */
         .terminal-box {
             background: transparent;
             padding: 0.3rem 0;
         }
 
-        /* ===== BOX 1: TITLE ===== */
+        /* ===== TITLE ===== */
         .title-box .typing-title {
             color: #00ff41;
-            font-size: 3.2rem;
+            font-size: 3.6rem;
             font-weight: 500;
             letter-spacing: 6px;
-            text-shadow: 0 0 40px rgba(0, 255, 65, 0.25), 0 0 80px rgba(0, 255, 65, 0.08);
+            text-shadow: 0 0 50px rgba(0, 255, 65, 0.45), 0 0 100px rgba(0, 255, 65, 0.2);
             display: inline;
             border-right: 6px solid #00ff41;
             padding-right: 8px;
@@ -108,9 +111,9 @@
 
         .title-prefix {
             color: #00ff41;
-            font-size: 3.2rem;
+            font-size: 3.6rem;
             font-weight: 500;
-            text-shadow: 0 0 40px rgba(0, 255, 65, 0.25);
+            text-shadow: 0 0 50px rgba(0, 255, 65, 0.45);
             margin-right: 0.3rem;
         }
 
@@ -119,42 +122,46 @@
             50% { border-color: transparent; }
         }
 
-        /* ===== DESCRIPTION UNDER TITLE ===== */
+        /* ===== DESCRIPTION ===== */
         .desc-wrapper {
-            margin-top: 0.8rem;
+            margin-top: 0.9rem;
             padding: 0.3rem 0;
-            min-height: 7rem;
+            min-height: 8rem;
         }
 
         .desc-text {
             color: #66ff77;
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             line-height: 1.8;
             display: inline;
             border-right: 4px solid #00ff41;
             padding-right: 6px;
             animation: blink-caret 0.8s step-end infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.25);
         }
 
-        /* ===== BOX 2: LINKS ===== */
+        /* ===== LINKS (prompt + list) ===== */
         .prompt-line {
             display: flex;
             align-items: center;
             gap: 0.4rem;
             flex-wrap: wrap;
             margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #66ff77;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
         }
 
         .prompt-symbol {
             color: #00ff41;
             font-weight: 500;
             letter-spacing: 0.3px;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
         }
 
         .prompt-path {
             color: #00dd33;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
         }
 
         .link-list {
@@ -167,9 +174,9 @@
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
-            padding: 0.4rem 0 0.4rem 0.25rem;
+            padding: 0.5rem 0 0.5rem 0.25rem;
             border-bottom: 1px solid #0f2a0f;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             flex-wrap: wrap;
         }
 
@@ -178,15 +185,17 @@
         }
 
         .link-bullet {
-            color: #00cc33;
-            font-weight: 300;
+            color: #00ff41;
+            font-weight: 400;
             margin-right: 0.2rem;
             user-select: none;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
         }
 
         .link-text {
             color: #66ff77;
             letter-spacing: 0.2px;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
         }
 
         .link-list a {
@@ -206,7 +215,7 @@
             border-radius: 4px;
         }
 
-        /* ===== BOX 3: FOOTER ===== */
+        /* ===== FOOTER ===== */
         .footer-term {
             margin-top: 0.2rem;
             padding-top: 1rem;
@@ -226,17 +235,18 @@
 
         .footer-col h3 {
             color: #00ff41;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 0.6rem;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            text-shadow: 0 0 40px rgba(0, 255, 65, 0.3), 0 0 80px rgba(0, 255, 65, 0.1);
             border-bottom: 1px solid #0f2a0f;
             padding-bottom: 0.3rem;
         }
 
         .footer-col p {
             color: #66ff77;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             line-height: 1.6;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
         }
 
         .footer-col ul {
@@ -246,16 +256,18 @@
 
         .footer-col ul li {
             color: #66ff77;
-            font-size: 0.95rem;
-            margin: 0.4rem 0;
+            font-size: 1.05rem;
+            margin: 0.5rem 0;
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            text-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
         }
 
         .footer-col ul li i {
             color: #00ff41;
             width: 1.2rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
         }
 
         .footer-col .social-links {
@@ -265,29 +277,33 @@
         .footer-col .social-links a {
             color: #66ff77;
             margin-right: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             transition: 0.2s;
             text-decoration: none;
+            text-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
         }
 
         .footer-col .social-links a:hover {
             color: #00ff41;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            text-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
         }
 
         .footer-copyright {
             text-align: center;
             color: #339944;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             padding-top: 1rem;
             margin-top: 1rem;
             border-top: 1px solid #0f2a0f;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ============================================================
+                RESPONSIVE – increased font sizes, better fit
+            ============================================================ */
         @media (max-width: 1024px) {
             .container {
-                max-width: 90%;
+                max-width: 92%;
             }
         }
 
@@ -300,20 +316,27 @@
                 gap: 0.6rem;
             }
             .title-box .typing-title {
-                font-size: 2.4rem;
+                font-size: 2.8rem;
                 border-right-width: 5px;
             }
             .title-prefix {
-                font-size: 2.4rem;
+                font-size: 2.8rem;
             }
             .desc-text {
-                font-size: 1rem;
+                font-size: 1.15rem;
             }
             .link-list li {
-                font-size: 1rem;
-                padding: 0.35rem 0;
+                font-size: 1.1rem;
+                padding: 0.4rem 0;
             }
             .prompt-line {
+                font-size: 1.1rem;
+            }
+            .footer-col h3 {
+                font-size: 1.3rem;
+            }
+            .footer-col p,
+            .footer-col ul li {
                 font-size: 1rem;
             }
             .footer-container {
@@ -324,7 +347,7 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 540px) {
             body {
                 padding: 0.8rem;
             }
@@ -335,36 +358,36 @@
                 padding: 0.2rem 0;
             }
             .title-box .typing-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
                 letter-spacing: 3px;
                 border-right-width: 4px;
                 padding-right: 5px;
             }
             .title-prefix {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
                 margin-right: 0.2rem;
             }
             .desc-wrapper {
-                margin-top: 0.5rem;
-                min-height: 5rem;
+                margin-top: 0.6rem;
+                min-height: 6rem;
             }
             .desc-text {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 line-height: 1.6;
                 border-right-width: 3px;
                 padding-right: 4px;
             }
             .prompt-line {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 margin-bottom: 0.5rem;
             }
             .link-list li {
-                font-size: 0.9rem;
-                padding: 0.3rem 0;
+                font-size: 1rem;
+                padding: 0.35rem 0;
                 gap: 0.3rem;
             }
             .link-list a {
-                font-size: 0.85rem;
+                font-size: 0.95rem;
             }
             .footer-term {
                 padding-top: 0.8rem;
@@ -374,50 +397,53 @@
                 gap: 0.8rem;
             }
             .footer-col h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-bottom: 0.4rem;
             }
             .footer-col p {
-                font-size: 0.85rem;
+                font-size: 0.95rem;
             }
             .footer-col ul li {
-                font-size: 0.85rem;
+                font-size: 0.95rem;
                 margin: 0.3rem 0;
             }
             .footer-col .social-links a {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-right: 0.8rem;
             }
             .footer-copyright {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
                 padding-top: 0.8rem;
                 margin-top: 0.8rem;
             }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 400px) {
             .title-box .typing-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
                 letter-spacing: 2px;
             }
             .title-prefix {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             .desc-text {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
             .link-list li {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
             .prompt-line {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+            }
+            .footer-col h3 {
+                font-size: 1.1rem;
+            }
+            .footer-col p,
+            .footer-col ul li {
+                font-size: 0.85rem;
             }
         }
     </style>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Font: Courgette -->
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -428,20 +454,20 @@
     <!-- ========================================= -->
     <div class="terminal-box title-box">
         <span class="title-prefix">❯_</span><span class="typing-title" id="titleText"></span>
-        
+
         <div class="desc-wrapper">
             <span class="desc-text" id="descText"></span>
         </div>
     </div>
 
     <!-- ========================================= -->
-    <!-- BOX 2: LINKS                             -->
+    <!-- BOX 2: LINKS (prompt + list)             -->
     <!-- ========================================= -->
     <div class="terminal-box">
         <div class="prompt-line">
             <span class="prompt-symbol">❯</span>
             <span class="prompt-path">jani_codes~/services</span>
-            <span style="color:#00ff41; opacity:0.7;">_</span>
+            <span style="color:#00ff41; opacity:0.9; text-shadow:0 0 20px #00ff41;">_</span>
         </div>
 
         <ul class="link-list">
@@ -450,6 +476,7 @@
                 <span class="link-text">video call</span>
                 <a href="https://visioncampus.onrender.com" target="_blank" rel="noopener noreferrer">start for free</a>
             </li>
+            <!-- extra dummy link to show style – you can remove -->
         </ul>
     </div>
 
@@ -488,7 +515,7 @@
 
 <script>
     (function() {
-        // ===== TITLE: "JANI CODES" - types once and stays =====
+        // ===== TITLE: "JANI CODES" =====
         const titleElement = document.getElementById('titleText');
         const titlePhrase = 'JANI CODES';
         let titleCharIndex = 0;
@@ -505,7 +532,7 @@
                         titleCharIndex++;
                         setTimeout(typeTitleChar, 80);
                     } else {
-                        // Title is complete - start description after 0.5s
+                        // start description after a short pause
                         setTimeout(function() {
                             typeDescription();
                         }, 500);
@@ -515,7 +542,7 @@
             }
         }
 
-        // ===== DESCRIPTION: types entire paragraph, pauses, erases, repeats =====
+        // ===== DESCRIPTION: type, pause, erase, repeat =====
         const descElement = document.getElementById('descText');
         const fullParagraph = 'Your coding terminal for learning and building. Master Python, AI, and web development. Interactive tutorials and real-world projects.';
         
@@ -537,7 +564,7 @@
             let speed = descDeleting ? 25 : 40;
 
             if (!descDeleting && descCharIndex === fullParagraph.length) {
-                speed = 3000; // Pause 3 seconds after full paragraph
+                speed = 3000; // pause 3s
                 descDeleting = true;
             } else if (descDeleting && descCharIndex === 0) {
                 descDeleting = false;
@@ -547,7 +574,7 @@
             setTimeout(typeDescription, speed);
         }
 
-        // Start title animation
+        // start the animation
         typeTitle();
     })();
 </script>
