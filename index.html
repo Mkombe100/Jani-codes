@@ -76,27 +76,27 @@
             align-items: center;
             justify-content: center;
             font-family: 'Courgette', 'Ubuntu Mono', 'Ubuntu', 'Courier New', cursive, monospace;
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 0.8rem;
         }
 
         /* ===== TERMINAL BOX - NO BORDERS ===== */
         .terminal-box {
             background: transparent;
-            padding: 0.5rem 0;
+            padding: 0.3rem 0;
         }
 
         /* ===== BOX 1: TITLE ===== */
         .title-box .typing-title {
             color: #00ff41;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 500;
             letter-spacing: 6px;
             text-shadow: 0 0 40px rgba(0, 255, 65, 0.25), 0 0 80px rgba(0, 255, 65, 0.08);
@@ -108,7 +108,7 @@
 
         .title-prefix {
             color: #00ff41;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 500;
             text-shadow: 0 0 40px rgba(0, 255, 65, 0.25);
             margin-right: 0.3rem;
@@ -121,9 +121,9 @@
 
         /* ===== DESCRIPTION UNDER TITLE ===== */
         .desc-wrapper {
-            margin-top: 1.2rem;
-            padding: 0.5rem 0;
-            min-height: 8rem;
+            margin-top: 0.8rem;
+            padding: 0.3rem 0;
+            min-height: 7rem;
         }
 
         .desc-text {
@@ -142,7 +142,7 @@
             align-items: center;
             gap: 0.4rem;
             flex-wrap: wrap;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
             font-size: 1.1rem;
             color: #66ff77;
         }
@@ -160,14 +160,14 @@
         .link-list {
             list-style: none;
             padding: 0;
-            margin: 0.25rem 0 0.5rem 0;
+            margin: 0.15rem 0 0.3rem 0;
         }
 
         .link-list li {
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
-            padding: 0.5rem 0 0.5rem 0.25rem;
+            padding: 0.4rem 0 0.4rem 0.25rem;
             border-bottom: 1px solid #0f2a0f;
             font-size: 1.1rem;
             flex-wrap: wrap;
@@ -208,8 +208,8 @@
 
         /* ===== BOX 3: FOOTER ===== */
         .footer-term {
-            margin-top: 0.5rem;
-            padding-top: 1.5rem;
+            margin-top: 0.2rem;
+            padding-top: 1rem;
             border-top: 1px solid #0f2a0f;
         }
 
@@ -217,7 +217,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-col {
@@ -227,10 +227,10 @@
         .footer-col h3 {
             color: #00ff41;
             font-size: 1.3rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             text-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
             border-bottom: 1px solid #0f2a0f;
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.3rem;
         }
 
         .footer-col p {
@@ -247,7 +247,7 @@
         .footer-col ul li {
             color: #66ff77;
             font-size: 0.95rem;
-            margin: 0.5rem 0;
+            margin: 0.4rem 0;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -259,7 +259,7 @@
         }
 
         .footer-col .social-links {
-            margin-top: 0.8rem;
+            margin-top: 0.6rem;
         }
 
         .footer-col .social-links a {
@@ -279,36 +279,138 @@
             text-align: center;
             color: #339944;
             font-size: 0.85rem;
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
+            padding-top: 1rem;
+            margin-top: 1rem;
             border-top: 1px solid #0f2a0f;
         }
 
-        /* ===== responsive ===== */
-        @media (max-width: 600px) {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
             .container {
-                padding: 0;
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                max-width: 100%;
+                gap: 0.6rem;
             }
             .title-box .typing-title {
-                font-size: 2rem;
+                font-size: 2.4rem;
                 border-right-width: 5px;
             }
             .title-prefix {
-                font-size: 2rem;
-            }
-            .link-list li {
-                font-size: 0.95rem;
-                padding: 0.6rem 0;
-            }
-            .prompt-line {
-                font-size: 0.95rem;
+                font-size: 2.4rem;
             }
             .desc-text {
                 font-size: 1rem;
             }
+            .link-list li {
+                font-size: 1rem;
+                padding: 0.35rem 0;
+            }
+            .prompt-line {
+                font-size: 1rem;
+            }
+            .footer-container {
+                gap: 1.2rem;
+            }
+            .footer-col {
+                flex: 1 1 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.8rem;
+            }
+            .container {
+                gap: 0.5rem;
+            }
+            .terminal-box {
+                padding: 0.2rem 0;
+            }
+            .title-box .typing-title {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+                border-right-width: 4px;
+                padding-right: 5px;
+            }
+            .title-prefix {
+                font-size: 1.8rem;
+                margin-right: 0.2rem;
+            }
+            .desc-wrapper {
+                margin-top: 0.5rem;
+                min-height: 5rem;
+            }
+            .desc-text {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                border-right-width: 3px;
+                padding-right: 4px;
+            }
+            .prompt-line {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            .link-list li {
+                font-size: 0.9rem;
+                padding: 0.3rem 0;
+                gap: 0.3rem;
+            }
+            .link-list a {
+                font-size: 0.85rem;
+            }
+            .footer-term {
+                padding-top: 0.8rem;
+            }
             .footer-container {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 0.8rem;
+            }
+            .footer-col h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.4rem;
+            }
+            .footer-col p {
+                font-size: 0.85rem;
+            }
+            .footer-col ul li {
+                font-size: 0.85rem;
+                margin: 0.3rem 0;
+            }
+            .footer-col .social-links a {
+                font-size: 1.1rem;
+                margin-right: 0.8rem;
+            }
+            .footer-copyright {
+                font-size: 0.75rem;
+                padding-top: 0.8rem;
+                margin-top: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .title-box .typing-title {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+            .title-prefix {
+                font-size: 1.5rem;
+            }
+            .desc-text {
+                font-size: 0.8rem;
+            }
+            .link-list li {
+                font-size: 0.8rem;
+            }
+            .prompt-line {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -338,15 +440,15 @@
     <div class="terminal-box">
         <div class="prompt-line">
             <span class="prompt-symbol">❯</span>
-            <span class="prompt-path">~/jani</span>
+            <span class="prompt-path">jani_codes~/services</span>
             <span style="color:#00ff41; opacity:0.7;">_</span>
         </div>
 
         <ul class="link-list">
             <li>
                 <span class="link-bullet">▶</span>
-                <span class="link-text">Online classroom</span>
-                <a href="https://visioncampus.onrender.com" target="_blank" rel="noopener noreferrer">vision campus</a>
+                <span class="link-text">video call</span>
+                <a href="https://vision-campus.onrender.com" target="_blank" rel="noopener noreferrer">start for free</a>
             </li>
         </ul>
     </div>
@@ -358,7 +460,7 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h3><i class="fas fa-terminal" style="margin-right:0.5rem;"></i>Jani Codes</h3>
-                <p>in social media</p>
+                <p>Your one-stop destination for curated programming resources, tutorials, and learning materials across various technologies.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -453,7 +555,6 @@
 </body>
 </html>
 
-	
 
 
 
